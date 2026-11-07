@@ -134,6 +134,8 @@ the set-up page is **one pane.** everything on it starts **✦ smartly tuned** f
 
 change anything and the ✦ settings re-tune around you, live. the page tells you exactly what moved.
 
+<p align="center"><img src="assets/setup-page.png" alt="the spunup set-up page, smartly tuned for Qwen3.8-27B on RunPod" width="800"></p>
+
 want that extra bit of quality on this model and don't mind paying for it? bump the size up. your call, always. spunup just makes sure you know what it costs 😏
 
 - 🎛️ anything you can change looks like `[ value ▾ ]`. no hunting.
