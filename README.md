@@ -14,7 +14,7 @@
 
 <div align="center">
 
-<h1><code>npx spunup</code></h1>
+<h1><code>npx spunup-cli</code></h1>
 
 **one command. any terminal. that's the whole install.** ⚡
 
@@ -65,7 +65,7 @@ no talking to an agent for an hour trying to remember startup flags. no "did i t
 got Node.js 22+? one line:
 
 ```sh
-npx spunup
+npx spunup-cli
 ```
 
 the first run sets up the `spunup` command for good. from then on, from **any** terminal, anywhere on your machine:
@@ -83,7 +83,7 @@ curl -fsSL https://raw.githubusercontent.com/jthweny/spunup/main/install/install
 irm https://raw.githubusercontent.com/jthweny/spunup/main/install/install.ps1 | iex         # Windows (PowerShell)
 ```
 
-works on **Windows, macOS and Linux.** new version out? `npx spunup@latest` updates it.
+works on **Windows, macOS and Linux.** new version out? `npx spunup-cli@latest` updates it.
 
 ---
 

@@ -3,11 +3,11 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { HOME, PKG_ROOT, IS_WIN } from "./paths.js";
 
-/** `npx spunup` runs from npm's temporary cache. The first time (and after an update) it also installs
+/** `npx spunup-cli` runs from npm's temporary cache. The first time (and after an update) it also installs
  *  the spunup command for good, with the same installer as the one-line install. */
 export const fromNpx = (): boolean => /[\\/]_npx[\\/]/.test(PKG_ROOT);
 
-const installedRoot = () => path.join(HOME, "app", ...(IS_WIN ? [] : ["lib"]), "node_modules", "spunup");
+const installedRoot = () => path.join(HOME, "app", ...(IS_WIN ? [] : ["lib"]), "node_modules", "spunup-cli");
 
 /** dist/cli.js of the installed copy, if there is one. */
 export function installedCli(): string | undefined {
@@ -30,7 +30,7 @@ export async function selfInstall(version: string): Promise<void> {
   for (const [k, v] of Object.entries(process.env)) if (!/^npm_/i.test(k)) env[k] = v;
   const pathKey = Object.keys(env).find((k) => k.toUpperCase() === "PATH") || "PATH";
   env[pathKey] = (env[pathKey] || "").split(path.delimiter).filter((d) => !/[\\/]_npx[\\/]|node_modules[\\/]\.bin/.test(d)).join(path.delimiter);
-  env.SPUNUP_PACKAGE ||= `spunup@${version}`;   // set by hand only for testing with a local tarball
+  env.SPUNUP_PACKAGE ||= `spunup-cli@${version}`;   // set by hand only for testing with a local tarball
   const [cmd, args] = IS_WIN
     ? ["powershell.exe", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path.join(PKG_ROOT, "install", "install.ps1")]]
     : ["sh", [path.join(PKG_ROOT, "install", "install.sh")]];
@@ -43,5 +43,5 @@ export async function selfInstall(version: string): Promise<void> {
   const name = ["spunup", "spunup-ai"].find((n) => fs.existsSync(path.join(bin, IS_WIN ? `${n}.cmd` : n)));
   note = ok && installedVersion() === version && name
     ? `✓ spunup is installed. Next time, just type: ${name}`
-    : "Setting up the spunup command did not work, but npx spunup still works.";
+    : "Setting up the spunup command did not work, but npx spunup-cli still works.";
 }

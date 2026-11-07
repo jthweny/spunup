@@ -1,11 +1,12 @@
 {
-  "name": "spunup",
+  "name": "spunup-cli",
   "version": "0.1.0",
   "description": "One command to run AI models on your computer, Vast.ai or RunPod, with a private OpenAI-compatible endpoint.",
   "type": "module",
   "bin": {
     "spunup": "dist/cli.js",
-    "spunup-ai": "dist/cli.js"
+    "spunup-ai": "dist/cli.js",
+    "spunup-cli": "dist/cli.js"
   },
   "files": [
     "dist",

@@ -7,7 +7,7 @@
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"   # Windows PowerShell's progress bar makes the Node download crawl
 $NodeVersion = "v26.13.0"   # current Node.js LTS (checked 2026-11-06)
-$Pkg = if ($env:SPUNUP_PACKAGE) { $env:SPUNUP_PACKAGE } else { "spunup" }
+$Pkg = if ($env:SPUNUP_PACKAGE) { $env:SPUNUP_PACKAGE } else { "spunup-cli" }
 $Root = if ($env:SPUNUP_HOME) { $env:SPUNUP_HOME } else { Join-Path $env:USERPROFILE ".spunup" }
 $Bin = Join-Path $Root "bin"
 
@@ -51,7 +51,7 @@ Write-Host "Installing spunup..."
 $env:PATH = "$nodeDir;$env:PATH"
 & $npm install --global --prefix (Join-Path $Root "app") --no-fund --no-audit --no-update-notifier --loglevel=error $Pkg | Out-Null
 if ($LASTEXITCODE -ne 0) { Fail "npm could not install $Pkg." }
-$cli = Join-Path $Root "app\node_modules\spunup\dist\cli.js"
+$cli = Join-Path $Root "app\node_modules\spunup-cli\dist\cli.js"
 if (-not (Test-Path $cli)) { Fail "the spunup files were not found after installing." }
 
 # 4. The command. If "spunup" already belongs to something else, use "spunup-ai" instead.
@@ -64,7 +64,7 @@ if ($existing -and ($existing.Source -ne (Join-Path $Bin "spunup.cmd"))) {
 }
 # Paths relative to the .cmd file (%~dp0) keep it plain ASCII, so a profile folder like C:\Users\José still
 # works, and Node is found when the command runs: spunup's private copy, else the Node on PATH.
-$lines = @('@echo off', 'set "SPUNUP_CLI=%~dp0..\app\node_modules\spunup\dist\cli.js"')
+$lines = @('@echo off', 'set "SPUNUP_CLI=%~dp0..\app\node_modules\spunup-cli\dist\cli.js"')
 if ($env:SPUNUP_HOME) { $lines += 'set "SPUNUP_HOME=%~dp0.."' }
 $lines += @('if exist "%~dp0..\node\node.exe" (', '  "%~dp0..\node\node.exe" "%SPUNUP_CLI%" %*', ') else (', '  node "%SPUNUP_CLI%" %*', ')')
 Set-Content -Path (Join-Path $Bin "$name.cmd") -Encoding ASCII -Value ($lines -join "`r`n")

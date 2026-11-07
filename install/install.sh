@@ -5,7 +5,7 @@
 set -eu
 
 NODE_VERSION="v26.13.0"          # current Node.js LTS (checked 2026-11-06)
-PKG="${SPUNUP_PACKAGE:-spunup}"  # npm package (or a tarball path/URL for testing)
+PKG="${SPUNUP_PACKAGE:-spunup-cli}"  # npm package (or a tarball path/URL for testing)
 ROOT="${SPUNUP_HOME:-$HOME/.spunup}"
 BIN="$ROOT/bin"
 
@@ -30,7 +30,7 @@ case "$(uname -m)" in
   *) fail "unsupported CPU type $(uname -m)." ;;
 esac
 if [ "$OS" = linux ] && ldd --version 2>&1 | grep -qi musl; then
-  fail "this Linux uses musl (for example Alpine). Install Node.js 22 or newer with your package manager, then run: npm i -g spunup"
+  fail "this Linux uses musl (for example Alpine). Install Node.js 22 or newer with your package manager, then run: npm i -g spunup-cli"
 fi
 say "spunup: installing for $OS ($ARCH)"
 mkdir -p "$ROOT" "$BIN"
@@ -64,7 +64,7 @@ NPM="$NODEDIR/npm"
 say "Installing spunup…"
 PATH="$NODEDIR:$PATH" "$NPM" install --global --prefix "$ROOT/app" --no-fund --no-audit --no-update-notifier --loglevel=error "$PKG" >/dev/null \
   || fail "npm could not install $PKG."
-CLI="$ROOT/app/lib/node_modules/spunup/dist/cli.js"
+CLI="$ROOT/app/lib/node_modules/spunup-cli/dist/cli.js"
 [ -f "$CLI" ] || fail "the spunup files were not found after installing."
 
 # 4. The command. If "spunup" already belongs to something else, use "spunup-ai" instead.
