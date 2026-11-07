@@ -1,0 +1,125 @@
+{
+ "schema": 1,
+ "id": "muse",
+ "name": "Muse (Meta)",
+ "hf_orgs": [
+  "meta-models"
+ ],
+ "model_types": [
+  "muse_glimmer",
+  "muse_spark"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "muse_glimmer",
+   "reasoning_parser": "muse_glimmer",
+   "args": [
+    "--generation-config",
+    "auto"
+   ],
+   "chat_template": null,
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "muse",
+   "reasoning_parser": "muse",
+   "args": [],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --generation-config auto --enable-auto-tool-choice --tool-call-parser muse_glimmer --reasoning-parser muse_glimmer"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [],
+ "members": [
+  "meta-models/Muse-Glimmer-30B",
+  "meta-models/Muse-Spark-Open-816B-A42B"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/meta-models",
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/meta-models/muse-glimmer.jsx",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#muse-models-muse"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "meta-models"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "meta-models"
+ ]
+}

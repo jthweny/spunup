@@ -1,0 +1,280 @@
+{
+ "schema": 1,
+ "id": "XiaomiMiMo/MiMo-V2-Flash",
+ "name": "MiMo-V2-Flash",
+ "family": "mimo",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "MiMoV2FlashForCausalLM",
+ "model_type": "mimo_v2_flash",
+ "moe": true,
+ "params_b": 309.8,
+ "active_b": 15.0,
+ "layers": 48,
+ "experts": 256,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 150.99,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:XiaomiMiMo/MiMo-V2-Flash",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "XiaomiMiMo/MiMo-V2-Flash",
+   "size_gb": 313.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--tensor-parallel-size",
+    "4",
+    "--gpu-memory-utilization",
+    "0.9"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "Q8_0/MiMo-V2-Flash-Q8_0-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 328.23,
+   "bits": 8.48,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "Q6_K/MiMo-V2-Flash-Q6_K-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 253.46,
+   "bits": 6.55,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "Q5_K_M/MiMo-V2-Flash-Q5_K_M-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 219.12,
+   "bits": 5.66,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "Q4_K_M/MiMo-V2-Flash-Q4_K_M-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 186.8,
+   "bits": 4.82,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "Q3_K_M/MiMo-V2-Flash-Q3_K_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 147.3,
+   "bits": 3.8,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "UD-Q2_K_XL/MiMo-V2-Flash-UD-Q2_K_XL-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 116.28,
+   "bits": 3.0,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "file": "UD-IQ1_M/MiMo-V2-Flash-UD-IQ1_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 93.8,
+   "bits": 2.42,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/MiMo-V2-Flash-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/MiMo-V2-Flash-4bit",
+   "size_gb": 173.8,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.20.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--generation-config",
+    "vllm"
+   ],
+   "env": {},
+   "tool_parser": "mimo",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "mimo",
+   "reasoning_parser": "mimo",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/MiMo-V2-Flash-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "mimo2",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/MiMo-V2-Flash-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --generation-config vllm --enable-auto-tool-choice --tool-call-parser mimo --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/XiaomiMiMo/mimo-v2.6.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/XiaomiMiMo/MiMo-V2-Flash.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/XiaomiMiMo",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#mimo-v26-models-mimo",
+  "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash",
+  "https://huggingface.co/unsloth/MiMo-V2-Flash-GGUF"
+ ]
+}

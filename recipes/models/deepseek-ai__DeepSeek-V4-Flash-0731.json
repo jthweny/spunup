@@ -1,0 +1,224 @@
+{
+ "schema": 1,
+ "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
+ "name": "DeepSeek-V4-Flash-0731",
+ "family": "deepseek",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "DeepseekV4ForCausalLM",
+ "model_type": "deepseek_v4",
+ "moe": true,
+ "params_b": 284.0,
+ "active_b": 13.0,
+ "layers": 43,
+ "experts": 256,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 5.67,
+  "fixed_mb": 0.3,
+  "dtype": "16-bit",
+  "method": "DeepSeek V4 compressed KV: head_dim/ratio per layer",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "int8:deepseek-ai/DeepSeek-V4-Flash-0731",
+   "label": "INT8",
+   "format": "safetensors",
+   "repo": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "size_gb": 166.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:UD-Q8_K_XL",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "file": "UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 161.87,
+   "bits": 4.56,
+   "quant": "UD-Q8_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "file": "UD-Q3_K_XL/DeepSeek-V4-Flash-0731-UD-Q3_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 128.21,
+   "bits": 3.61,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "file": "UD-Q2_K_XL/DeepSeek-V4-Flash-0731-UD-Q2_K_XL-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 96.83,
+   "bits": 2.73,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "file": "UD-IQ1_M/DeepSeek-V4-Flash-0731-UD-IQ1_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 86.9,
+   "bits": 2.45,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--tokenizer-mode",
+    "deepseek_v4",
+    "--kv-cache-dtype",
+    "fp8",
+    "--block-size",
+    "256"
+   ],
+   "env": {},
+   "tool_parser": "deepseek_v4",
+   "reasoning_parser": "deepseek_v4",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "deepseekv4",
+   "reasoning_parser": "deepseek-v4",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "deepseek4",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --tokenizer-mode deepseek_v4 --kv-cache-dtype fp8 --block-size 256 --enable-auto-tool-choice --tool-call-parser deepseek_v4 --reasoning-parser deepseek_v4"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/deepseek-ai/deepseek-v4.jsx",
+  "https://github.com/vllm-project/recipes/tree/main/models/deepseek-ai",
+  "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "https://huggingface.co/unsloth/DeepSeek-V4-Flash-0731-GGUF",
+  "params: vLLM recipe DeepSeek-V4-Flash: 284B / 13B"
+ ]
+}

@@ -1,0 +1,336 @@
+{
+ "schema": 1,
+ "id": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+ "name": "Llama-4-Scout-17B-16E-Instruct",
+ "family": "llama",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Llama4ForConditionalGeneration",
+ "model_type": "llama4",
+ "moe": true,
+ "params_b": 108.6,
+ "active_b": 17.0,
+ "layers": 48,
+ "experts": 16,
+ "max_context": 10485760,
+ "max_context_extended": null,
+ "gated": true,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 201.33,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:meta-llama/Llama-4-Scout-17B-16E-Instruct",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+   "size_gb": 217.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:nvidia/Llama-4-Scout-17B-16E-Instruct-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "nvidia/Llama-4-Scout-17B-16E-Instruct-FP8",
+   "size_gb": 111.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4",
+   "size_gb": 65.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Q8_0/Llama-4-Scout-17B-16E-Instruct-Q8_0-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 114.53,
+   "bits": 8.44,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Q6_K/Llama-4-Scout-17B-16E-Instruct-Q6_K-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 88.43,
+   "bits": 6.51,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Q5_K_M/Llama-4-Scout-17B-16E-Instruct-Q5_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 76.55,
+   "bits": 5.64,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Q4_K_M/Llama-4-Scout-17B-16E-Instruct-Q4_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 65.36,
+   "bits": 4.81,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Q3_K_M/Llama-4-Scout-17B-16E-Instruct-Q3_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 51.76,
+   "bits": 3.81,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Llama-4-Scout-17B-16E-Instruct-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 42.38,
+   "bits": 3.12,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "file": "Llama-4-Scout-17B-16E-Instruct-UD-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 34.99,
+   "bits": 2.58,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Llama-4-Scout-17B-16E-Instruct-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Llama-4-Scout-17B-16E-Instruct-4bit",
+   "size_gb": 61.1,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Llama-4-Scout-17B-16E-Instruct-6bit",
+   "label": "MLX 6-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Llama-4-Scout-17B-16E-Instruct-6bit",
+   "size_gb": 88.3,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.12.0",
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "llama4_pythonic",
+   "reasoning_parser": null,
+   "reasoning_plugin": null,
+   "chat_template": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/tool_chat_template_llama4_pythonic.jinja",
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--async-scheduling",
+      "--no-enable-prefix-caching",
+      "--max-num-batched-tokens",
+      "8192"
+     ],
+     "env": {}
+    },
+    "blackwell": {
+     "args": [
+      "--async-scheduling",
+      "--no-enable-prefix-caching",
+      "--max-num-batched-tokens",
+      "8192",
+      "--compilation-config",
+      "{\"pass_config\":{\"fuse_allreduce_rms\":true,\"eliminate_noops\":true}}"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "pythonic",
+   "reasoning_parser": null,
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "llama4",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Llama-4-Scout-17B-16E-Instruct-4bit",
+    "mlx-community/Llama-4-Scout-17B-16E-Instruct-6bit",
+    "mlx-community/Llama-4-Scout-17B-16E-Instruct-8bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser llama4_pythonic --chat-template {chat_template}"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Llama 3 does not support parallel tool calls (vLLM docs).",
+  "Gated on Hugging Face: accept the license on the model page, then use a Read token."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Meta/Llama3.1.mdx",
+  "https://github.com/vllm-project/recipes/blob/main/models/meta-llama/Llama-4-Scout-17B-16E-Instruct.yaml",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#llama-models-llama3_json",
+  "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+  "https://huggingface.co/unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF"
+ ]
+}

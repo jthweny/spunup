@@ -1,0 +1,260 @@
+{
+ "schema": 1,
+ "id": "moonshotai/Kimi-K2.6",
+ "name": "Kimi-K2.6",
+ "family": "kimi",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "KimiK25ForConditionalGeneration",
+ "model_type": "kimi_k25",
+ "moe": true,
+ "params_b": 1000.0,
+ "active_b": 32.0,
+ "layers": 61,
+ "experts": 384,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 71.96,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "int4:moonshotai/Kimi-K2.6",
+   "label": "INT4",
+   "format": "safetensors",
+   "repo": "moonshotai/Kimi-K2.6",
+   "size_gb": 595.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/Kimi-K2.6-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/Kimi-K2.6-NVFP4",
+   "size_gb": 595.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "fp8:RedHatAI/Kimi-K2.6-FP8-BLOCK",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "RedHatAI/Kimi-K2.6-FP8-BLOCK",
+   "size_gb": 1030.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q4_0",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "file": "moonshotai_Kimi-K2.6-Q4_0/moonshotai_Kimi-K2.6-Q4_0-00001-of-00016.gguf",
+   "parts": 16,
+   "size_gb": 583.71,
+   "bits": 4.67,
+   "quant": "Q4_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "file": "moonshotai_Kimi-K2.6-Q3_K_M/moonshotai_Kimi-K2.6-Q3_K_M-00001-of-00013.gguf",
+   "parts": 13,
+   "size_gb": 466.87,
+   "bits": 3.73,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "file": "moonshotai_Kimi-K2.6-Q2_K_L/moonshotai_Kimi-K2.6-Q2_K_L-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 359.34,
+   "bits": 2.87,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "file": "moonshotai_Kimi-K2.6-IQ1_M/moonshotai_Kimi-K2.6-IQ1_M-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 232.43,
+   "bits": 1.86,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.25.0",
+   "nightly": false,
+   "image": "vllm/vllm-openai:latest",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "kimi_k2",
+   "reasoning_parser": "kimi_k2",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "blackwell": {
+     "args": [
+      "--attention-config",
+      "{\"use_prefill_query_quantization\":true}"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "kimi_k2",
+   "reasoning_parser": "kimi_k2",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "deepseek2",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser kimi_k2 --reasoning-parser kimi_k2"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/moonshotai/kimi-k3.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/moonshotai/Kimi-K2.6.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/moonshotai",
+  "https://huggingface.co/bartowski/moonshotai_Kimi-K2.6-GGUF",
+  "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "https://huggingface.co/moonshotai/Kimi-K3",
+  "params: vLLM recipe: 1T / 32B"
+ ]
+}

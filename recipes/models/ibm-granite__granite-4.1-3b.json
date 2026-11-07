@@ -1,0 +1,269 @@
+{
+ "schema": 1,
+ "id": "ibm-granite/granite-4.1-3b",
+ "name": "granite-4.1-3b",
+ "family": "granite",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "GraniteForCausalLM",
+ "model_type": "granite",
+ "moe": false,
+ "params_b": 3.4,
+ "active_b": 3.4,
+ "layers": 40,
+ "experts": null,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 83.89,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:ibm-granite/granite-4.1-3b",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "ibm-granite/granite-4.1-3b",
+   "size_gb": 6.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 3.62,
+   "bits": 8.52,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 2.91,
+   "bits": 6.85,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 2.5,
+   "bits": 5.88,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 2.17,
+   "bits": 5.11,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 1.78,
+   "bits": 4.19,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "file": "ibm-granite_granite-4.1-3b-Q2_K_L.gguf",
+   "parts": 1,
+   "size_gb": 1.5,
+   "bits": 3.53,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/granite-4.1-3b-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/granite-4.1-3b-4bit",
+   "size_gb": 2.1,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/granite-4.1-3b-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "mlx-community/granite-4.1-3b-8bit",
+   "size_gb": 3.8,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "granite_toolcall_parser",
+   "reasoning_parser": "granite_thinking_parser",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "auto",
+   "reasoning_parser": "auto",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/ibm-granite_granite-4.1-3b-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "granite",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/granite-4.1-3b-4bit",
+    "mlx-community/granite-4.1-3b-8bit",
+    "mlx-community/granite-4.1-3b-mxfp4"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser granite_toolcall_parser --reasoning-parser granite_thinking_parser"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "The Granite 4.2 model card uses --tool-call-parser qwen3_coder with a plugin reasoning parser; vLLM's docs list built-in granite_toolcall_parser / granite_thinking_parser. spunup uses the built-in ones."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/ibm-granite/granite-4.2.jsx",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/reasoning_outputs.md",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#ibm-granite",
+  "https://huggingface.co/bartowski/ibm-granite_granite-4.1-3b-GGUF",
+  "https://huggingface.co/ibm-granite/granite-4.1-3b",
+  "https://huggingface.co/ibm-granite/granite-4.2-8b"
+ ]
+}

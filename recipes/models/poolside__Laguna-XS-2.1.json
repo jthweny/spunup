@@ -1,0 +1,309 @@
+{
+ "schema": 1,
+ "id": "poolside/Laguna-XS-2.1",
+ "name": "Laguna-XS-2.1",
+ "family": "laguna",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "LagunaForCausalLM",
+ "model_type": "laguna",
+ "moe": true,
+ "params_b": 33.4,
+ "active_b": 3.0,
+ "layers": 40,
+ "experts": 256,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "openmdw-1.1",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 41.94,
+  "fixed_mb": 62.9,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "bf16:poolside/Laguna-XS-2.1",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "poolside/Laguna-XS-2.1",
+   "size_gb": 66.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:poolside/Laguna-XS-2.1-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "poolside/Laguna-XS-2.1-FP8",
+   "size_gb": 35.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:poolside/Laguna-XS-2.1-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "poolside/Laguna-XS-2.1-NVFP4",
+   "size_gb": 21.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "int4:poolside/Laguna-XS-2.1-INT4",
+   "label": "INT4",
+   "format": "safetensors",
+   "repo": "poolside/Laguna-XS-2.1-INT4",
+   "size_gb": 23.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 35.6,
+   "bits": 8.53,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 29.04,
+   "bits": 6.96,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 24.01,
+   "bits": 5.75,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 20.55,
+   "bits": 4.92,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 15.58,
+   "bits": 3.73,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "file": "Laguna-XS-2.1-Q2_K_L.gguf",
+   "parts": 1,
+   "size_gb": 12.36,
+   "bits": 2.96,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Laguna-XS-2.1-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Laguna-XS-2.1-4bit",
+   "size_gb": 18.8,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Laguna-XS-2.1-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Laguna-XS-2.1-8bit",
+   "size_gb": 35.5,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.21.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "poolside_v1",
+   "reasoning_parser": "poolside_v1",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "poolside_v1",
+   "reasoning_parser": "poolside_v1",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/Laguna-XS-2.1-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "laguna",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Laguna-XS-2.1-4bit",
+    "mlx-community/Laguna-XS-2.1-8bit",
+    "mlx-community/Laguna-XS-2.1-6bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser poolside_v1 --reasoning-parser poolside_v1"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/poolside/laguna-xs21.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/poolside/Laguna-XS-2.1.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/poolside",
+  "https://huggingface.co/bartowski/Laguna-XS-2.1-GGUF",
+  "https://huggingface.co/poolside/Laguna-XS-2.1"
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "schema": 1,
+ "id": "moonshotai/Kimi-K3",
+ "name": "Kimi-K3",
+ "family": "kimi",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "KimiK3ForConditionalGeneration",
+ "model_type": "kimi_k3",
+ "moe": true,
+ "params_b": 2800.0,
+ "active_b": 104.0,
+ "layers": 93,
+ "experts": 896,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 28.31,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "full-attention layers from linear_attn_config; MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "mxfp4:moonshotai/Kimi-K3",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "moonshotai/Kimi-K3",
+   "size_gb": 1560.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:RedHatAI/Kimi-K3-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "RedHatAI/Kimi-K3-NVFP4",
+   "size_gb": 1646.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:RedHatAI/Kimi-K3-FP8-BLOCK",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "RedHatAI/Kimi-K3-FP8-BLOCK",
+   "size_gb": 2819.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:UD-Q8_K_XL",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Kimi-K3-GGUF",
+   "file": "UD-Q8_K_XL/Kimi-K3-UD-Q8_K_XL-00001-of-00034.gguf",
+   "parts": 34,
+   "size_gb": 1561.16,
+   "bits": 4.46,
+   "quant": "UD-Q8_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Kimi-K3-GGUF",
+   "file": "UD-Q2_K_XL/Kimi-K3-UD-Q2_K_XL-00001-of-00019.gguf",
+   "parts": 19,
+   "size_gb": 861.28,
+   "bits": 2.46,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Kimi-K3-GGUF",
+   "file": "UD-IQ1_M/Kimi-K3-UD-IQ1_M-00001-of-00015.gguf",
+   "parts": 15,
+   "size_gb": 648.87,
+   "bits": 1.85,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.29.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--gpu-memory-utilization",
+    "0.95"
+   ],
+   "env": {},
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--gpu-memory-utilization",
+      "0.97",
+      "--max-num-seqs",
+      "5",
+      "--max-model-len",
+      "32768",
+      "--moe-backend",
+      "marlin",
+      "--disable-custom-all-reduce",
+      "--no-enable-flashinfer-autotune",
+      "--max-num-batched-tokens",
+      "4096",
+      "--attention-backend",
+      "FLASHMLA"
+     ],
+     "env": {
+      "VLLM_ENGINE_READY_TIMEOUT_S": "3600",
+      "VLLM_USE_V2_MODEL_RUNNER": "1",
+      "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+     }
+    },
+    "blackwell": {
+     "args": [
+      "--load-format",
+      "fastsafetensors",
+      "--no-enable-flashinfer-autotune",
+      "--max-model-len",
+      "1048576",
+      "--kv-cache-dtype",
+      "fp8",
+      "--attention-config",
+      "{\"use_prefill_query_quantization\":true,\"mla_prefill_backend\":\"TOKENSPEED_MLA\"}",
+      "--enable-prefix-caching",
+      "--attention-backend",
+      "TOKENSPEED_MLA",
+      "--prefix-match-unit",
+      "128"
+     ],
+     "env": {
+      "VLLM_ALLREDUCE_USE_FLASHINFER": "1",
+      "VLLM_ENGINE_READY_TIMEOUT_S": "3600",
+      "VLLM_USE_V2_MODEL_RUNNER": "1"
+     }
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Kimi-K3-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "kimi-k3",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --gpu-memory-utilization 0.95 --enable-auto-tool-choice --tool-call-parser kimi_k3 --reasoning-parser kimi_k3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/moonshotai/kimi-k3.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/moonshotai/Kimi-K3.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/moonshotai",
+  "https://huggingface.co/moonshotai/Kimi-K3",
+  "https://huggingface.co/unsloth/Kimi-K3-GGUF",
+  "params: model card: 2.8T total, 104B activated"
+ ]
+}

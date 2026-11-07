@@ -1,0 +1,163 @@
+{
+ "schema": 1,
+ "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+ "name": "DeepSeek-V4.1-Flash",
+ "family": "deepseek",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "DeepseekV41ForCausalLM",
+ "model_type": "deepseek_v41",
+ "moe": true,
+ "params_b": 552.0,
+ "active_b": 16.0,
+ "layers": 40,
+ "experts": 384,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 2.62,
+  "fixed_mb": 0.3,
+  "dtype": "16-bit",
+  "method": "DeepSeek V4 compressed KV: head_dim/ratio per layer (KV source layers only)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:deepseek-ai/DeepSeek-V4.1-Flash-1017",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+   "size_gb": 510.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.31.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--tokenizer-mode",
+    "deepseek_v41"
+   ],
+   "env": {
+    "VLLM_ENGINE_READY_TIMEOUT_S": "3600"
+   },
+   "tool_parser": "deepseek_v41",
+   "reasoning_parser": "deepseek_v41",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "auto",
+   "reasoning_parser": "auto",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": false,
+   "repo": null,
+   "min_build": "b12110",
+   "gguf_arch": null,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --tokenizer-mode deepseek_v41 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41"
+  },
+  "cpu": {
+   "best": null,
+   "others": [],
+   "command": null
+  },
+  "mixed": {
+   "best": null,
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": null
+  },
+  "mac": {
+   "best": null,
+   "others": [],
+   "command": null
+  }
+ },
+ "known_issues": [
+  "DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt.",
+  "No GGUF build from a trusted publisher yet, so CPU, mixed GPU+RAM and Mac setups are not available."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/deepseek-ai/deepseek-v4.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/deepseek-ai",
+  "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "params: model card: 552B backbone; activated 8B / 16B"
+ ]
+}

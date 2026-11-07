@@ -1,0 +1,290 @@
+{
+ "schema": 1,
+ "id": "moonshotai/Kimi-Linear-48B-A3B-Instruct",
+ "name": "Kimi-Linear-48B-A3B-Instruct",
+ "family": "kimi",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "KimiLinearForCausalLM",
+ "model_type": "kimi_linear",
+ "moe": true,
+ "params_b": 49.1,
+ "active_b": 3.0,
+ "layers": 27,
+ "experts": 256,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 8.26,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "full-attention layers from linear_attn_config; MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:moonshotai/Kimi-Linear-48B-A3B-Instruct",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "moonshotai/Kimi-Linear-48B-A3B-Instruct",
+   "size_gb": 98.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q8_0/moonshotai_Kimi-Linear-48B-A3B-Instruct-Q8_0-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 52.25,
+   "bits": 8.51,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 40.46,
+   "bits": 6.59,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 35.1,
+   "bits": 5.72,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 30.06,
+   "bits": 4.9,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 22.68,
+   "bits": 3.7,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q2_K_L.gguf",
+   "parts": 1,
+   "size_gb": 17.9,
+   "bits": 2.92,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "file": "moonshotai_Kimi-Linear-48B-A3B-Instruct-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 10.92,
+   "bits": 1.78,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Kimi-Linear-48B-A3B-Instruct-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Kimi-Linear-48B-A3B-Instruct-4bit",
+   "size_gb": 27.6,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Kimi-Linear-48B-A3B-Instruct-6bit",
+   "label": "MLX 6-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Kimi-Linear-48B-A3B-Instruct-6bit",
+   "size_gb": 39.9,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.11.2",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "kimi_k2",
+   "reasoning_parser": null,
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [
+    "uv pip install vllm==0.11.2 --torch-backend auto"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "kimi_k2",
+   "reasoning_parser": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "kimi-linear",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Kimi-Linear-48B-A3B-Instruct-4bit",
+    "mlx-community/Kimi-Linear-48B-A3B-Instruct-6bit",
+    "mlx-community/Kimi-Linear-48B-A3B-Instruct-3bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser kimi_k2"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is.",
+  "The vLLM recipe pins vllm==0.11.2 for Kimi Linear; newer vLLM is not listed as tested. Tool parser kimi_k2 is assumed from the family (not in the recipe)."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/moonshotai/kimi-k3.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/moonshotai/Kimi-Linear-48B-A3B-Instruct.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/moonshotai",
+  "https://huggingface.co/bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+  "https://huggingface.co/moonshotai/Kimi-K3",
+  "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Instruct"
+ ]
+}

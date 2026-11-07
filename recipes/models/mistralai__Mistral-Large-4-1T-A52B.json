@@ -1,0 +1,267 @@
+{
+ "schema": 1,
+ "id": "mistralai/Mistral-Large-4-1T-A52B",
+ "name": "Mistral-Large-4-1T-A52B",
+ "family": "mistral",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "MistralLarge4ForConditionalGeneration",
+ "model_type": "mistral_large4",
+ "moe": true,
+ "params_b": 1000.0,
+ "active_b": 52.0,
+ "layers": 72,
+ "experts": 128,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 82.58,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; shared kv_source_layers; MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:mistralai/Mistral-Large-4-1T-A52B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "mistralai/Mistral-Large-4-1T-A52B",
+   "size_gb": 1060.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "Q8_0/Mistral-Large-4-1T-A52B-Q8_0-00001-of-00025.gguf",
+   "parts": 25,
+   "size_gb": 1115.15,
+   "bits": 8.92,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-Q6_K_XL/Mistral-Large-4-1T-A52B-UD-Q6_K_XL-00001-of-00020.gguf",
+   "parts": 20,
+   "size_gb": 890.47,
+   "bits": 7.12,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q5_K_XL",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-Q5_K_XL/Mistral-Large-4-1T-A52B-UD-Q5_K_XL-00001-of-00018.gguf",
+   "parts": 18,
+   "size_gb": 783.75,
+   "bits": 6.27,
+   "quant": "UD-Q5_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-Q4_K_XL/Mistral-Large-4-1T-A52B-UD-Q4_K_XL-00001-of-00014.gguf",
+   "parts": 14,
+   "size_gb": 604.79,
+   "bits": 4.84,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-Q3_K_XL/Mistral-Large-4-1T-A52B-UD-Q3_K_XL-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 492.75,
+   "bits": 3.94,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-Q2_K_XL/Mistral-Large-4-1T-A52B-UD-Q2_K_XL-00001-of-00009.gguf",
+   "parts": 9,
+   "size_gb": 378.25,
+   "bits": 3.03,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "file": "UD-IQ1_M/Mistral-Large-4-1T-A52B-UD-IQ1_M-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 259.58,
+   "bits": 2.08,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": false,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--tokenizer_mode",
+    "mistral",
+    "--config_format",
+    "mistral",
+    "--load_format",
+    "mistral"
+   ],
+   "env": {},
+   "tool_parser": "mistral",
+   "reasoning_parser": "mistral",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "auto",
+   "reasoning_parser": "auto",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Mistral-Large-4-1T-A52B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "mistral-large4",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/Mistral-Large-4-1T-A52B-Text-4bit",
+    "mlx-community/Mistral-Large-4-1T-A52B-Text-2bit",
+    "mlx-community/Mistral-Large-4-1T-A52B-Text-3bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser auto --reasoning-parser auto"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Reasoning models (Magistral, *-Reasoning, Medium 3.5, Small 4, Large 4) add --reasoning-parser mistral."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Mistral",
+  "https://github.com/vllm-project/recipes/tree/main/models/mistralai",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#mistral-models-mistral",
+  "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+  "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
+  "params: model card: ~1T total / ~52B active"
+ ]
+}

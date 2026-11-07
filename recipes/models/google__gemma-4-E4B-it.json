@@ -1,0 +1,311 @@
+{
+ "schema": 1,
+ "id": "google/gemma-4-E4B-it",
+ "name": "gemma-4-E4B-it",
+ "family": "gemma",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Gemma4ForConditionalGeneration",
+ "model_type": "gemma4",
+ "moe": false,
+ "params_b": 8.0,
+ "active_b": 8.0,
+ "layers": 42,
+ "experts": null,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 16.78,
+  "fixed_mb": 21.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 18 layers reuse earlier KV; 2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:google/gemma-4-E4B-it",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "google/gemma-4-E4B-it",
+   "size_gb": 16.0,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:RedHatAI/gemma-4-E4B-it-FP8-dynamic",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "RedHatAI/gemma-4-E4B-it-FP8-dynamic",
+   "size_gb": 8.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "int4:google/gemma-4-E4B-it-qat-w4a16-ct",
+   "label": "INT4",
+   "format": "safetensors",
+   "repo": "google/gemma-4-E4B-it-qat-w4a16-ct",
+   "size_gb": 11.5,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "int2/4/8:google/gemma-4-E4B-it-qat-mobile-ct",
+   "label": "QAT",
+   "format": "safetensors",
+   "repo": "google/gemma-4-E4B-it-qat-mobile-ct",
+   "size_gb": 3.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 8.19,
+   "bits": 8.19,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 7.07,
+   "bits": 7.07,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 5.48,
+   "bits": 5.48,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 4.98,
+   "bits": 4.98,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 4.06,
+   "bits": 4.06,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "file": "gemma-4-E4B-it-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 3.76,
+   "bits": 3.76,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:lmstudio-community/gemma-4-E4B-it-MLX-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "lmstudio-community/gemma-4-E4B-it-MLX-4bit",
+   "size_gb": 6.8,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:lmstudio-community/gemma-4-E4B-it-MLX-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "lmstudio-community/gemma-4-E4B-it-MLX-8bit",
+   "size_gb": 8.9,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.19.1",
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "gemma4",
+   "reasoning_parser": "gemma4",
+   "reasoning_plugin": null,
+   "chat_template": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/tool_chat_template_gemma4.jinja",
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "gemma4",
+   "reasoning_parser": "gemma4",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/gemma-4-E4B-it-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "gemma4",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "lmstudio-community/gemma-4-E4B-it-MLX-4bit",
+    "lmstudio-community/gemma-4-E4B-it-MLX-8bit",
+    "lmstudio-community/gemma-4-E4B-it-MLX-6bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --chat-template {chat_template}"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "Gemma 4 thinking is off by default; set reasoning_effort or chat_template_kwargs {\"enable_thinking\": true}."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Google/Gemma4.mdx",
+  "https://github.com/vllm-project/recipes/blob/main/models/google/gemma-4-E4B-it.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/Google",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/reasoning_outputs.md",
+  "https://huggingface.co/google/gemma-4-E4B-it",
+  "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF"
+ ]
+}

@@ -1,0 +1,161 @@
+{
+ "schema": 1,
+ "id": "ornith-ai/Ornith-1.5-397B-FP8",
+ "name": "Ornith-1.5-397B-FP8",
+ "family": "ornith",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Qwen3_5MoeForConditionalGeneration",
+ "model_type": "qwen3_5_moe",
+ "moe": true,
+ "params_b": 397.0,
+ "active_b": 17.0,
+ "layers": 60,
+ "experts": 512,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 31.46,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "fp8:ornith-ai/Ornith-1.5-397B-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "ornith-ai/Ornith-1.5-397B-FP8",
+   "size_gb": 418.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": false,
+   "repo": null,
+   "min_build": "b12110",
+   "gguf_arch": null,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": null,
+   "others": [],
+   "command": null
+  },
+  "mixed": {
+   "best": null,
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": null
+  },
+  "mac": {
+   "best": null,
+   "others": [],
+   "command": null
+  }
+ },
+ "known_issues": [
+  "Ornith models use the Qwen3.5 architecture.",
+  "No GGUF build from a trusted publisher yet, so CPU, mixed GPU+RAM and Mac setups are not available."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/ornith-ai/ornith-1.5.jsx",
+  "https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B",
+  "https://huggingface.co/ornith-ai/Ornith-1.5-397B-FP8",
+  "params: Qwen3.5-397B-A17B architecture (config identical)"
+ ]
+}

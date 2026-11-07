@@ -1,0 +1,265 @@
+{
+ "schema": 1,
+ "id": "LiquidAI/LFM2.5-24B-A2B",
+ "name": "LFM2.5-24B-A2B",
+ "family": "lfm",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Lfm2MoeForCausalLM",
+ "model_type": "lfm2_moe",
+ "moe": true,
+ "params_b": 24.0,
+ "active_b": 2.0,
+ "layers": 40,
+ "experts": 64,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 20.97,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "bf16:LiquidAI/LFM2.5-24B-A2B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "LiquidAI/LFM2.5-24B-A2B",
+   "size_gb": 47.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 25.49,
+   "bits": 8.5,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 21.15,
+   "bits": 7.05,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 18.5,
+   "bits": 6.17,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 15.35,
+   "bits": 5.12,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 11.55,
+   "bits": 3.85,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "file": "LFM2.5-24B-A2B-Q2_K.gguf",
+   "parts": 1,
+   "size_gb": 9.18,
+   "bits": 3.06,
+   "quant": "Q2_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:LiquidAI/LFM2.5-24B-A2B-MLX-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "LiquidAI/LFM2.5-24B-A2B-MLX-4bit",
+   "size_gb": 13.6,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:LiquidAI/LFM2.5-24B-A2B-MLX-bf16",
+   "label": "MLX 16-bit",
+   "format": "mlx",
+   "repo": "LiquidAI/LFM2.5-24B-A2B-MLX-bf16",
+   "size_gb": 48.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "lfm2",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "lfm2",
+   "reasoning_parser": "qwen3",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/LFM2.5-24B-A2B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "lfm2moe",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "LiquidAI/LFM2.5-24B-A2B-MLX-4bit",
+    "LiquidAI/LFM2.5-24B-A2B-MLX-bf16",
+    "LiquidAI/LFM2.5-24B-A2B-MLX-6bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser lfm2 --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/LiquidAI/lfm2.5.jsx",
+  "https://github.com/vllm-project/recipes/tree/main/models/LiquidAI",
+  "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+  "https://huggingface.co/bartowski/LFM2.5-24B-A2B-GGUF"
+ ]
+}

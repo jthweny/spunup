@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.tgz
+research/.venv/
+research/raw/
+research/build_log.txt
+.playwright-mcp/
+.DS_Store
+*.log
+__pycache__/
+*.pyc
+.env
+.env.*
+/spec.md
+/claude.md
+/CLAUDE.md
+/RESEARCH.md

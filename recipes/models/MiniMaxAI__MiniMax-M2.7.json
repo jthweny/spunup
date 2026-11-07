@@ -1,0 +1,278 @@
+{
+ "schema": 1,
+ "id": "MiniMaxAI/MiniMax-M2.7",
+ "name": "MiniMax-M2.7",
+ "family": "minimax",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "MiniMaxM2ForCausalLM",
+ "model_type": "minimax_m2",
+ "moe": true,
+ "params_b": 228.7,
+ "active_b": 10.0,
+ "layers": 62,
+ "experts": 256,
+ "max_context": 204800,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 260.05,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:MiniMaxAI/MiniMax-M2.7",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "MiniMaxAI/MiniMax-M2.7",
+   "size_gb": 230.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/MiniMax-M2.7-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/MiniMax-M2.7-NVFP4",
+   "size_gb": 139.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q8_0/MiniMaxAI_MiniMax-M2.7-Q8_0-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 243.14,
+   "bits": 8.51,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q6_K/MiniMaxAI_MiniMax-M2.7-Q6_K-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 197.05,
+   "bits": 6.89,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q5_K_M/MiniMaxAI_MiniMax-M2.7-Q5_K_M-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 162.67,
+   "bits": 5.69,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q4_K_M/MiniMaxAI_MiniMax-M2.7-Q4_K_M-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 138.81,
+   "bits": 4.86,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q3_K_M/MiniMaxAI_MiniMax-M2.7-Q3_K_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 104.13,
+   "bits": 3.64,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-Q2_K_L/MiniMaxAI_MiniMax-M2.7-Q2_K_L-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 80.65,
+   "bits": 2.82,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "file": "MiniMaxAI_MiniMax-M2.7-IQ1_M/MiniMaxAI_MiniMax-M2.7-IQ1_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 52.2,
+   "bits": 1.83,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.20.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "minimax_m2",
+   "reasoning_parser": "minimax_m2",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "minimax-m2",
+   "reasoning_parser": "minimax",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "minimax-m2",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/MiniMax-M2.7-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser minimax_m2 --reasoning-parser minimax_m2"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "MiniMax M2.x use the minimax_m2 parsers instead."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/MiniMaxAI/minimax-m3.1.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/MiniMaxAI/MiniMax-M2.7.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/MiniMaxAI",
+  "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+  "https://huggingface.co/bartowski/MiniMaxAI_MiniMax-M2.7-GGUF"
+ ]
+}

@@ -1,0 +1,241 @@
+{
+ "schema": 1,
+ "id": "meta-models/Muse-Spark-Open-816B-A42B",
+ "name": "Muse-Spark-Open-816B-A42B",
+ "family": "muse",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": null,
+ "model_type": null,
+ "moe": true,
+ "params_b": 816.0,
+ "active_b": 42.0,
+ "layers": null,
+ "experts": null,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": true,
+ "license": "other",
+ "multimodal": false,
+ "kv": null,
+ "quants": [
+  {
+   "id": "bf16:meta-models/Muse-Spark-Open-816B-A42B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "meta-models/Muse-Spark-Open-816B-A42B",
+   "size_gb": 1644.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "mxfp4:amd/Muse-Spark-Open-816B-A42B-Quark-MXFP4",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "amd/Muse-Spark-Open-816B-A42B-Quark-MXFP4",
+   "size_gb": 508.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+   "size_gb": 533.0,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+   "file": "UD-Q4_K_XL/Muse-Spark-Open-816B-A42B-UD-Q4_K_XL-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 505.5,
+   "bits": 4.96,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+   "file": "UD-Q3_K_XL/Muse-Spark-Open-816B-A42B-UD-Q3_K_XL-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 401.48,
+   "bits": 3.94,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+   "file": "UD-Q2_K_XL/Muse-Spark-Open-816B-A42B-UD-Q2_K_XL-00001-of-00008.gguf",
+   "parts": 8,
+   "size_gb": 311.23,
+   "bits": 3.05,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+   "file": "UD-IQ1_M/Muse-Spark-Open-816B-A42B-UD-IQ1_M-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 208.93,
+   "bits": 2.05,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.33.0",
+   "nightly": true,
+   "image": "vllm/vllm-openai:muse-spark-open",
+   "args": [],
+   "env": {},
+   "tool_parser": "muse",
+   "reasoning_parser": "muse",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "muse",
+   "reasoning_parser": "muse",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "muse-spark",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/Muse-Spark-Open-816B-A42B-4bit",
+    "mlx-community/Muse-Spark-Open-816B-A42B-3bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm",
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser muse --reasoning-parser muse"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "KV cache size could not be computed from config.json; spunup uses a size-based fallback.",
+  "vLLM support needs a nightly build (recipe min version: 0.33.0).",
+  "Gated on Hugging Face: accept the license on the model page, then use a Read token."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/meta-models/muse-glimmer.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/meta-models/Muse-Spark-Open-816B-A42B.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/meta-models",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#muse-models-muse",
+  "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+  "https://huggingface.co/unsloth/Muse-Spark-Open-816B-A42B-GGUF",
+  "params: vLLM recipe: 816B / 42B"
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "schema": 1,
+ "id": "llama",
+ "name": "Llama (Meta)",
+ "hf_orgs": [
+  "meta-llama"
+ ],
+ "model_types": [
+  "llama",
+  "llama4"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "llama3_json",
+   "reasoning_parser": null,
+   "args": [],
+   "chat_template": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/tool_chat_template_llama3.1_json.jinja",
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "llama3",
+   "reasoning_parser": null,
+   "args": [],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser llama3_json --chat-template {chat_template}"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "Llama 3 does not support parallel tool calls (vLLM docs)."
+ ],
+ "members": [
+  "meta-llama/Llama-3.1-8B-Instruct",
+  "meta-llama/Llama-3.2-1B-Instruct",
+  "meta-llama/Llama-3.2-3B-Instruct",
+  "meta-llama/Llama-3.3-70B-Instruct",
+  "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+  "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#llama-models-llama3_json",
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Meta/Llama3.1.mdx"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "meta-llama"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "meta-llama"
+ ]
+}

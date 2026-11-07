@@ -1,0 +1,123 @@
+{
+ "schema": 1,
+ "id": "gpt-oss",
+ "name": "gpt-oss (OpenAI)",
+ "hf_orgs": [
+  "openai"
+ ],
+ "model_types": [
+  "gpt_oss"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "openai",
+   "reasoning_parser": null,
+   "args": [],
+   "chat_template": null,
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "gpt-oss",
+   "reasoning_parser": "gpt-oss",
+   "args": [],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser openai"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "Reasoning comes from the Harmony format; vLLM separates it without a reasoning parser flag."
+ ],
+ "members": [
+  "openai/gpt-oss-120b",
+  "openai/gpt-oss-20b"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/openai",
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/OpenAI/GPT-OSS.mdx",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#openai-oss-models-openai"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "openai"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "openai"
+ ]
+}

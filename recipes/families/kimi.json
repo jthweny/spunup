@@ -1,0 +1,134 @@
+{
+ "schema": 1,
+ "id": "kimi",
+ "name": "Kimi (Moonshot)",
+ "hf_orgs": [
+  "moonshotai"
+ ],
+ "model_types": [
+  "kimi_k3",
+  "kimi_k31",
+  "kimi_k25",
+  "kimi_k2",
+  "kimi_linear"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "chat_template": null,
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser kimi_k3 --reasoning-parser kimi_k3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is."
+ ],
+ "members": [
+  "moonshotai/Kimi-K2.6",
+  "moonshotai/Kimi-K2.7-Code",
+  "moonshotai/Kimi-K3",
+  "moonshotai/Kimi-K3.1-Pro",
+  "moonshotai/Kimi-Linear-48B-A3B-Instruct"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/moonshotai",
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/moonshotai/kimi-k3.jsx",
+  "https://huggingface.co/moonshotai/Kimi-K3"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "moonshotai"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "moonshotai"
+ ]
+}

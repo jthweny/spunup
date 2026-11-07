@@ -1,0 +1,239 @@
+{
+ "schema": 1,
+ "id": "Nanbeige/Nanbeige4.3-33B",
+ "name": "Nanbeige4.3-33B",
+ "family": "nanbeige",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "LlamaForCausalLM",
+ "model_type": "llama",
+ "moe": false,
+ "params_b": 33.1,
+ "active_b": 33.1,
+ "layers": 52,
+ "experts": null,
+ "max_context": 524288,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 218.1,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:Nanbeige/Nanbeige4.3-33B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "Nanbeige/Nanbeige4.3-33B",
+   "size_gb": 66.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 35.2,
+   "bits": 8.51,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q6_K.gguf",
+   "parts": 1,
+   "size_gb": 29.02,
+   "bits": 7.01,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 25.07,
+   "bits": 6.06,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 20.79,
+   "bits": 5.02,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 15.92,
+   "bits": 3.85,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "file": "Nanbeige_Nanbeige4.3-33B-Q2_K.gguf",
+   "parts": 1,
+   "size_gb": 13.53,
+   "bits": 3.27,
+   "quant": "Q2_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/Nanbeige_Nanbeige4.3-33B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "llama",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "Nanbeige4.3 uses the Llama architecture; parsers come from its model card."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://huggingface.co/Nanbeige/Nanbeige4.3-33B",
+  "https://huggingface.co/bartowski/Nanbeige_Nanbeige4.3-33B-GGUF"
+ ]
+}

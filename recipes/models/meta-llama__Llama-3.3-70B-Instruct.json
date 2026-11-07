@@ -1,0 +1,336 @@
+{
+ "schema": 1,
+ "id": "meta-llama/Llama-3.3-70B-Instruct",
+ "name": "Llama-3.3-70B-Instruct",
+ "family": "llama",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "LlamaForCausalLM",
+ "model_type": "llama",
+ "moe": false,
+ "params_b": 70.6,
+ "active_b": 70.6,
+ "layers": 80,
+ "experts": null,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": true,
+ "license": "llama3.3",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 335.54,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:meta-llama/Llama-3.3-70B-Instruct",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "meta-llama/Llama-3.3-70B-Instruct",
+   "size_gb": 141.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:nvidia/Llama-3.3-70B-Instruct-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "nvidia/Llama-3.3-70B-Instruct-FP8",
+   "size_gb": 72.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/Llama-3.3-70B-Instruct-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/Llama-3.3-70B-Instruct-NVFP4",
+   "size_gb": 42.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-Q8_0/Llama-3.3-70B-Instruct-Q8_0-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 74.98,
+   "bits": 8.5,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "UD-Q6_K_XL/Llama-3.3-70B-Instruct-UD-Q6_K_XL-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 61.16,
+   "bits": 6.93,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-Q5_K_M.gguf",
+   "parts": 1,
+   "size_gb": 49.95,
+   "bits": 5.66,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-Q4_K_M.gguf",
+   "parts": 1,
+   "size_gb": 42.52,
+   "bits": 4.82,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-Q3_K_M.gguf",
+   "parts": 1,
+   "size_gb": 34.27,
+   "bits": 3.88,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 26.97,
+   "bits": 3.06,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "file": "Llama-3.3-70B-Instruct-UD-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 17.15,
+   "bits": 1.94,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Llama-3.3-70B-Instruct-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Llama-3.3-70B-Instruct-4bit",
+   "size_gb": 39.7,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Llama-3.3-70B-Instruct-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Llama-3.3-70B-Instruct-8bit",
+   "size_gb": 75.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.12.0",
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "llama3_json",
+   "reasoning_parser": null,
+   "reasoning_plugin": null,
+   "chat_template": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/tool_chat_template_llama3.1_json.jinja",
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--async-scheduling",
+      "--no-enable-prefix-caching",
+      "--max-num-batched-tokens",
+      "8192"
+     ],
+     "env": {}
+    },
+    "blackwell": {
+     "args": [
+      "--async-scheduling",
+      "--no-enable-prefix-caching",
+      "--max-num-batched-tokens",
+      "8192",
+      "--compilation-config",
+      "{\"pass_config\":{\"fuse_allreduce_rms\":true,\"fuse_attn_quant\":true,\"eliminate_noops\":true}}"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "llama3",
+   "reasoning_parser": null,
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Llama-3.3-70B-Instruct-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "llama",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Llama-3.3-70B-Instruct-4bit",
+    "mlx-community/Llama-3.3-70B-Instruct-8bit",
+    "mlx-community/Llama-3.3-70B-Instruct-3bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser llama3_json --chat-template {chat_template}"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "Llama 3 does not support parallel tool calls (vLLM docs).",
+  "Gated on Hugging Face: accept the license on the model page, then use a Read token."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Meta/Llama3.1.mdx",
+  "https://github.com/vllm-project/recipes/blob/main/models/meta-llama/Llama-3.3-70B-Instruct.yaml",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#llama-models-llama3_json",
+  "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
+  "https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF"
+ ]
+}

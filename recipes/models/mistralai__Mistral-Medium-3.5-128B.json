@@ -1,0 +1,280 @@
+{
+ "schema": 1,
+ "id": "mistralai/Mistral-Medium-3.5-128B",
+ "name": "Mistral-Medium-3.5-128B",
+ "family": "mistral",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Mistral3ForConditionalGeneration",
+ "model_type": "mistral3",
+ "moe": false,
+ "params_b": 127.7,
+ "active_b": 127.7,
+ "layers": 88,
+ "experts": null,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 369.1,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:mistralai/Mistral-Medium-3.5-128B",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "mistralai/Mistral-Medium-3.5-128B",
+   "size_gb": 133.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q8_0/mistralai_Mistral-Medium-3.5-128B-Q8_0-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 132.85,
+   "bits": 8.32,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q6_K/mistralai_Mistral-Medium-3.5-128B-Q6_K-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 107.8,
+   "bits": 6.75,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q5_K_M/mistralai_Mistral-Medium-3.5-128B-Q5_K_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 91.11,
+   "bits": 5.71,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q4_K_M/mistralai_Mistral-Medium-3.5-128B-Q4_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 78.41,
+   "bits": 4.91,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q3_K_M/mistralai_Mistral-Medium-3.5-128B-Q3_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 63.28,
+   "bits": 3.96,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-Q2_K_L/mistralai_Mistral-Medium-3.5-128B-Q2_K_L-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 51.43,
+   "bits": 3.22,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "file": "mistralai_Mistral-Medium-3.5-128B-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 37.25,
+   "bits": 2.33,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Mistral-Medium-3.5-128B-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Mistral-Medium-3.5-128B-4bit",
+   "size_gb": 78.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.18.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--tokenizer_mode",
+    "mistral",
+    "--config_format",
+    "mistral",
+    "--load_format",
+    "mistral"
+   ],
+   "env": {},
+   "tool_parser": "mistral",
+   "reasoning_parser": "mistral",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [
+    "uv pip install -U \"mistral_common>=1.11.1\""
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "mistral",
+   "reasoning_parser": "mistral",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "mistral3",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Mistral-Medium-3.5-128B-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --tokenizer_mode mistral --config_format mistral --load_format mistral --enable-auto-tool-choice --tool-call-parser mistral --reasoning-parser mistral"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "Reasoning models (Magistral, *-Reasoning, Medium 3.5, Small 4, Large 4) add --reasoning-parser mistral."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Mistral",
+  "https://github.com/vllm-project/recipes/blob/main/models/mistralai/Mistral-Medium-3.5-128B.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/mistralai",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#mistral-models-mistral",
+  "https://huggingface.co/bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+  "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
+ ]
+}

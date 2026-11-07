@@ -1,0 +1,322 @@
+{
+ "schema": 1,
+ "id": "zai-org/GLM-5.2",
+ "name": "GLM-5.2",
+ "family": "glm",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "GlmMoeDsaForCausalLM",
+ "model_type": "glm_moe_dsa",
+ "moe": true,
+ "params_b": 753.3,
+ "active_b": 39.0,
+ "layers": 78,
+ "experts": 256,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 102.24,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:zai-org/GLM-5.2-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "zai-org/GLM-5.2-FP8",
+   "size_gb": 755.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "mxfp4:amd/GLM-5.2-MXFP4",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "amd/GLM-5.2-MXFP4",
+   "size_gb": 438.0,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/GLM-5.2-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/GLM-5.2-NVFP4",
+   "size_gb": 464.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "bf16:zai-org/GLM-5.2",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "zai-org/GLM-5.2",
+   "size_gb": 1506.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "Q8_0/GLM-5.2-Q8_0-00001-of-00017.gguf",
+   "parts": 17,
+   "size_gb": 801.36,
+   "bits": 8.51,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-Q6_K_XL/GLM-5.2-UD-Q6_K_XL-00001-of-00016.gguf",
+   "parts": 16,
+   "size_gb": 684.37,
+   "bits": 7.27,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q5_K_XL",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-Q5_K_XL/GLM-5.2-UD-Q5_K_XL-00001-of-00013.gguf",
+   "parts": 13,
+   "size_gb": 562.47,
+   "bits": 5.97,
+   "quant": "UD-Q5_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-Q4_K_XL/GLM-5.2-UD-Q4_K_XL-00001-of-00011.gguf",
+   "parts": 11,
+   "size_gb": 467.29,
+   "bits": 4.96,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-Q3_K_XL/GLM-5.2-UD-Q3_K_XL-00001-of-00009.gguf",
+   "parts": 9,
+   "size_gb": 342.97,
+   "bits": 3.64,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-Q2_K_XL/GLM-5.2-UD-Q2_K_XL-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 253.88,
+   "bits": 2.7,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "file": "UD-IQ1_M/GLM-5.2-UD-IQ1_M-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 228.49,
+   "bits": 2.43,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/GLM-5.2-mxfp4",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/GLM-5.2-mxfp4",
+   "size_gb": 395.1,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.24.0",
+   "nightly": false,
+   "image": "vllm/vllm-openai:v0.28.0",
+   "args": [
+    "--kv-cache-dtype",
+    "fp8_e4m3"
+   ],
+   "env": {},
+   "tool_parser": "glm47",
+   "reasoning_parser": "glm47",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--kv-cache-dtype",
+      "fp8"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "glm47",
+   "reasoning_parser": "glm45",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "glm-dsa",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/GLM-5.2-mxfp4",
+    "mlx-community/GLM-5.2-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --kv-cache-dtype fp8_e4m3 --enable-auto-tool-choice --tool-call-parser glm47 --reasoning-parser glm47"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "For chat, pass chat_template_kwargs {\"clear_thinking\": true}; agents should keep the default."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/zai-org/glm-5.2.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/zai-org/GLM-5.2.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/zai-org",
+  "https://huggingface.co/unsloth/GLM-5.2-GGUF",
+  "https://huggingface.co/zai-org/GLM-5.2",
+  "https://huggingface.co/zai-org/GLM-5.3"
+ ]
+}

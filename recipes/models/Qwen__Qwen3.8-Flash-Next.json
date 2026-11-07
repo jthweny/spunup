@@ -1,0 +1,311 @@
+{
+ "schema": 1,
+ "id": "Qwen/Qwen3.8-Flash-Next",
+ "name": "Qwen3.8-Flash-Next",
+ "family": "qwen",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Qwen4ExpForConditionalGeneration",
+ "model_type": "qwen4_exp",
+ "moe": true,
+ "params_b": 180.0,
+ "active_b": 6.0,
+ "layers": 48,
+ "experts": 512,
+ "max_context": 262144,
+ "max_context_extended": 1000000,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 25.17,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "nvfp4:Inferact/Qwen3.8-Flash-Next-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "Inferact/Qwen3.8-Flash-Next-NVFP4",
+   "size_gb": 182.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:Qwen/Qwen3.8-Flash-Next-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "Qwen/Qwen3.8-Flash-Next-FP8",
+   "size_gb": 185.5,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "bf16:Qwen/Qwen3.8-Flash-Next",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "Qwen/Qwen3.8-Flash-Next",
+   "size_gb": 360.0,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "Q8_0/Qwen3.8-Flash-Next-Q8_0-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 188.23,
+   "bits": 8.37,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "UD-Q6_K_XL/Qwen3.8-Flash-Next-UD-Q6_K_XL-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 169.17,
+   "bits": 7.52,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 111.33,
+   "bits": 4.95,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "UD-Q3_K_XL/Qwen3.8-Flash-Next-UD-Q3_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 89.46,
+   "bits": 3.98,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "UD-Q2_K_XL/Qwen3.8-Flash-Next-UD-Q2_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 79.58,
+   "bits": 3.54,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "file": "UD-IQ1_M/Qwen3.8-Flash-Next-UD-IQ1_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 68.01,
+   "bits": 3.02,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.30.0",
+   "nightly": true,
+   "image": "vllm/vllm-openai:nightly",
+   "args": [
+    "--max-num-seqs",
+    "256",
+    "--gpu-memory-utilization",
+    "0.90",
+    "--enable-prefix-caching"
+   ],
+   "env": {},
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--moe-backend",
+      "triton",
+      "--gpu-memory-utilization",
+      "0.85",
+      "--kv-cache-dtype",
+      "fp8",
+      "--attention-config.indexer_kv_dtype",
+      "fp8"
+     ],
+     "env": {}
+    },
+    "blackwell": {
+     "args": [
+      "--kv-cache-dtype",
+      "fp8",
+      "--attention-config.indexer_kv_dtype",
+      "fp8"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": {
+    "args": [
+     "--hf-overrides",
+     "{\"text_config\": {\"rope_parameters\": {\"mrope_interleaved\": true, \"mrope_section\": [11, 11, 10], \"rope_type\": \"yarn\", \"rope_theta\": 10000000, \"partial_rotary_factor\": 0.25, \"factor\": 4.0, \"original_max_position_embeddings\": 262144}}}",
+     "--max-model-len",
+     "1000000"
+    ],
+    "env": {
+     "VLLM_ALLOW_LONG_MAX_MODEL_LEN": "1"
+    }
+   }
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "qwen4exp",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/Qwen3.8-Flash-Next-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm",
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser qwen3_coder --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Thinking is on by default. Turn it off per request with chat_template_kwargs {\"enable_thinking\": false}.",
+  "vLLM support needs a nightly build (recipe min version: 0.30.0)."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/Qwen/qwen3.8.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/Qwen/Qwen3.8-Flash-Next.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/Qwen",
+  "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+  "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF"
+ ]
+}

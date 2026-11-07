@@ -1,0 +1,267 @@
+{
+ "schema": 1,
+ "id": "inclusionAI/Ling-3.1-flash",
+ "name": "Ling-3.1-flash",
+ "family": "ling",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "BailingMoeV3ForCausalLM",
+ "model_type": "bailing_hybrid",
+ "moe": true,
+ "params_b": 572.1,
+ "active_b": 25.0,
+ "layers": 72,
+ "experts": 512,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 84.93,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:inclusionAI/Ling-3.1-flash",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "inclusionAI/Ling-3.1-flash",
+   "size_gb": 573.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q8_0/Ling-3.1-flash-Q8_0-00001-of-00016.gguf",
+   "parts": 16,
+   "size_gb": 608.38,
+   "bits": 8.51,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q6_K/Ling-3.1-flash-Q6_K-00001-of-00014.gguf",
+   "parts": 14,
+   "size_gb": 501.58,
+   "bits": 7.01,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q5_K_M/Ling-3.1-flash-Q5_K_M-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 436.32,
+   "bits": 6.1,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q4_K_M/Ling-3.1-flash-Q4_K_M-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 357.97,
+   "bits": 5.01,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q3_K_M/Ling-3.1-flash-Q3_K_M-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 275.06,
+   "bits": 3.85,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-Q2_K/Ling-3.1-flash-Q2_K-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 219.17,
+   "bits": 3.06,
+   "quant": "Q2_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "file": "Ling-3.1-flash-IQ1_M/Ling-3.1-flash-IQ1_M-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 145.09,
+   "bits": 2.03,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "nightly",
+   "nightly": true,
+   "image": "vllm/vllm-openai:nightly",
+   "args": [
+    "--trust-remote-code",
+    "--enable-expert-parallel",
+    "--gpu-memory-utilization",
+    "0.9",
+    "--enable-chunked-prefill",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_AND_PIECEWISE\"}",
+    "--enable-prefix-caching"
+   ],
+   "env": {},
+   "tool_parser": "ling3",
+   "reasoning_parser": "ling3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "ling3",
+   "reasoning_parser": "ling3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/Ling-3.1-flash-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "bailingmoe3",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm",
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --trust-remote-code --tool-call-parser ling3 --reasoning-parser ling3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "vLLM support needs a nightly build (recipe min version: nightly)."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/inclusionAI/ling-3.1-flash.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/inclusionAI/Ling-3.1-flash.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/inclusionAI",
+  "https://huggingface.co/bartowski/Ling-3.1-flash-GGUF",
+  "https://huggingface.co/inclusionAI/Ling-3.1-flash"
+ ]
+}

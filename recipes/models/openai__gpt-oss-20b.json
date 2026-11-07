@@ -1,0 +1,199 @@
+{
+ "schema": 1,
+ "id": "openai/gpt-oss-20b",
+ "name": "gpt-oss-20b",
+ "family": "gpt-oss",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "GptOssForCausalLM",
+ "model_type": "gpt_oss",
+ "moe": true,
+ "params_b": 21.0,
+ "active_b": 3.6,
+ "layers": 24,
+ "experts": 32,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 25.17,
+  "fixed_mb": 3.1,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "mxfp4:openai/gpt-oss-20b",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "openai/gpt-oss-20b",
+   "size_gb": 13.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/openai_gpt-oss-20b-GGUF",
+   "file": "openai_gpt-oss-20b-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 12.11,
+   "bits": 4.61,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:lmstudio-community/gpt-oss-20b-MLX-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "lmstudio-community/gpt-oss-20b-MLX-8bit",
+   "size_gb": 22.2,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/gpt-oss-20b-MXFP4-Q8",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+   "size_gb": 12.1,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.10.1",
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "openai",
+   "reasoning_parser": null,
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "gpt-oss",
+   "reasoning_parser": "gpt-oss",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/openai_gpt-oss-20b-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "gpt-oss",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "lmstudio-community/gpt-oss-20b-MLX-8bit",
+    "mlx-community/gpt-oss-20b-MXFP4-Q8",
+    "mlx-community/gpt-oss-20b-MXFP4-Q4"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser openai"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Reasoning comes from the Harmony format; vLLM separates it without a reasoning parser flag."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/OpenAI/GPT-OSS.mdx",
+  "https://github.com/vllm-project/recipes/blob/main/models/openai/gpt-oss-20b.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/openai",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#openai-oss-models-openai",
+  "https://huggingface.co/bartowski/openai_gpt-oss-20b-GGUF",
+  "https://huggingface.co/openai/gpt-oss-20b"
+ ]
+}

@@ -1,0 +1,287 @@
+{
+ "schema": 1,
+ "id": "LiquidAI/LFM2.5-8B-A1B",
+ "name": "LFM2.5-8B-A1B",
+ "family": "lfm",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Lfm2MoeForCausalLM",
+ "model_type": "lfm2_moe",
+ "moe": true,
+ "params_b": 8.5,
+ "active_b": 1.0,
+ "layers": 24,
+ "experts": 32,
+ "max_context": 128000,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 12.58,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "bf16:LiquidAI/LFM2.5-8B-A1B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "LiquidAI/LFM2.5-8B-A1B",
+   "size_gb": 16.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-Q8_0.gguf",
+   "parts": 1,
+   "size_gb": 9.01,
+   "bits": 8.48,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-Q6_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 7.74,
+   "bits": 7.28,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q5_K_XL",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-Q5_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 6.39,
+   "bits": 6.01,
+   "quant": "UD-Q5_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-Q4_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 5.35,
+   "bits": 5.04,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-Q3_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 4.0,
+   "bits": 3.76,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 2.93,
+   "bits": 2.76,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "file": "LFM2.5-8B-A1B-UD-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 2.57,
+   "bits": 2.42,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:LiquidAI/LFM2.5-8B-A1B-MLX-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "LiquidAI/LFM2.5-8B-A1B-MLX-4bit",
+   "size_gb": 4.8,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:LiquidAI/LFM2.5-8B-A1B-MLX-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "LiquidAI/LFM2.5-8B-A1B-MLX-8bit",
+   "size_gb": 9.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.23.0",
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "lfm2",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "blackwell": {
+     "args": [],
+     "env": {
+      "VLLM_USE_OINK_OPS": "1"
+     }
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "lfm2",
+   "reasoning_parser": "qwen3",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/LFM2.5-8B-A1B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "lfm2moe",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "LiquidAI/LFM2.5-8B-A1B-MLX-4bit",
+    "LiquidAI/LFM2.5-8B-A1B-MLX-8bit",
+    "LiquidAI/LFM2.5-8B-A1B-MLX-6bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser lfm2 --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/LiquidAI/lfm2.5.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/LiquidAI/LFM2.5-8B-A1B.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/LiquidAI",
+  "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B",
+  "https://huggingface.co/unsloth/LFM2.5-8B-A1B-GGUF"
+ ]
+}

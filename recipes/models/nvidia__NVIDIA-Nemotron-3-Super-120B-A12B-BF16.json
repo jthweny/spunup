@@ -1,0 +1,300 @@
+{
+ "schema": 1,
+ "id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+ "name": "NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+ "family": "nemotron",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "NemotronHForCausalLM",
+ "model_type": "nemotron_h",
+ "moe": true,
+ "params_b": 123.6,
+ "active_b": 12.0,
+ "layers": 88,
+ "experts": 512,
+ "max_context": 262144,
+ "max_context_extended": 1048576,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 8.39,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "hybrid_override_pattern '*' layers; 2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+   "size_gb": 247.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "fp8:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+   "size_gb": 128.4,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+   "size_gb": 80.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "Q8_0/NVIDIA-Nemotron-3-Super-120B-A12B-Q8_0-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 128.47,
+   "bits": 8.32,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q6_K_XL",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "UD-Q6_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q6_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 117.85,
+   "bits": 7.63,
+   "quant": "UD-Q6_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q5_K_XL",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "UD-Q5_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q5_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 107.57,
+   "bits": 6.96,
+   "quant": "UD-Q5_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q4_K_XL",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "UD-Q4_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q4_K_XL-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 83.78,
+   "bits": 5.42,
+   "quant": "UD-Q4_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "UD-Q3_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q3_K_XL-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 62.63,
+   "bits": 4.05,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "file": "UD-Q2_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q2_K_XL-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 54.66,
+   "bits": 3.54,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit",
+   "size_gb": 68.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.17.1",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "nemotron_v3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": {
+    "args": [
+     "--max-model-len",
+     "1048576"
+    ],
+    "env": {
+     "VLLM_ALLOW_LONG_MAX_MODEL_LEN": "1"
+    }
+   }
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "nemotron_3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "nemotron_h_moe",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser nemotron_v3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "NVIDIA's org also hosts quantized copies of other families; those keep their own family."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/nvidia/nemotron-3.5-lightning.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/nvidia",
+  "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF"
+ ]
+}

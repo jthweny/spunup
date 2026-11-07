@@ -1,0 +1,160 @@
+{
+ "schema": 1,
+ "id": "moonshotai/Kimi-K3.1-Pro",
+ "name": "Kimi-K3.1-Pro",
+ "family": "kimi",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "KimiK31ForConditionalGeneration",
+ "model_type": "kimi_k31",
+ "moe": true,
+ "params_b": 2800.0,
+ "active_b": 104.0,
+ "layers": 93,
+ "experts": 896,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 28.31,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "full-attention layers from linear_attn_config; MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp4:moonshotai/Kimi-K3.1-Pro",
+   "label": "FP4",
+   "format": "safetensors",
+   "repo": "moonshotai/Kimi-K3.1-Pro",
+   "size_gb": 1561.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": false,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code"
+   ],
+   "env": {},
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "kimi_k3",
+   "reasoning_parser": "kimi_k3",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": false,
+   "repo": null,
+   "min_build": "b12110",
+   "gguf_arch": null,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --trust-remote-code --tool-call-parser kimi_k3 --reasoning-parser kimi_k3"
+  },
+  "cpu": {
+   "best": null,
+   "others": [],
+   "command": null
+  },
+  "mixed": {
+   "best": null,
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": null
+  },
+  "mac": {
+   "best": null,
+   "others": [],
+   "command": null
+  }
+ },
+ "known_issues": [
+  "Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is.",
+  "No GGUF build from a trusted publisher yet, so CPU, mixed GPU+RAM and Mac setups are not available."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/moonshotai/kimi-k3.jsx",
+  "https://github.com/vllm-project/recipes/tree/main/models/moonshotai",
+  "https://huggingface.co/moonshotai/Kimi-K3",
+  "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+  "params: model card: 104B activated; SGLang cookbook: 2.8T"
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "schema": 1,
+ "id": "gemma",
+ "name": "Gemma (Google)",
+ "hf_orgs": [
+  "google"
+ ],
+ "model_types": [
+  "gemma4",
+  "gemma4_unified",
+  "gemma3"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "gemma4",
+   "reasoning_parser": "gemma4",
+   "args": [],
+   "chat_template": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/tool_chat_template_gemma4.jinja",
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "gemma4",
+   "reasoning_parser": "gemma4",
+   "args": [],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --chat-template {chat_template}"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "Gemma 4 thinking is off by default; set reasoning_effort or chat_template_kwargs {\"enable_thinking\": true}."
+ ],
+ "members": [
+  "google/gemma-4-12B-it",
+  "google/gemma-4-26B-A4B-it",
+  "google/gemma-4-31B-it",
+  "google/gemma-4-E2B-it",
+  "google/gemma-4-E4B-it"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/Google",
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Google/Gemma4.mdx",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/reasoning_outputs.md"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "google"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "google"
+ ]
+}

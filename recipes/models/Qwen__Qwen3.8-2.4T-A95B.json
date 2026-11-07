@@ -1,0 +1,262 @@
+{
+ "schema": 1,
+ "id": "Qwen/Qwen3.8-2.4T-A95B",
+ "name": "Qwen3.8-2.4T-A95B",
+ "family": "qwen",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Qwen3_5MoeForCausalLM",
+ "model_type": "qwen3_5_moe_text",
+ "moe": true,
+ "params_b": 2446.2,
+ "active_b": 95.0,
+ "layers": 92,
+ "experts": 512,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 96.47,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "bf16:Qwen/Qwen3.8-2.4T-A95B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "Qwen/Qwen3.8-2.4T-A95B",
+   "size_gb": 4892.4,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:Qwen/Qwen3.8-2.4T-A95B-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+   "size_gb": 2496.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "mxfp4:Inferact/Qwen3.8-2.4T-A95B-MXFP4",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "Inferact/Qwen3.8-2.4T-A95B-MXFP4",
+   "size_gb": 1597.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:Inferact/Qwen3.8-2.4T-A95B-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "Inferact/Qwen3.8-2.4T-A95B-NVFP4",
+   "size_gb": 1447.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--linear-backend",
+    "flashinfer_cutedsl"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "file": "Q8_0/Qwen3.8-2.4T-A95B-Q8_0-00001-of-00056.gguf",
+   "parts": 56,
+   "size_gb": 2600.25,
+   "bits": 8.5,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ3_XXS",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "file": "UD-IQ3_XXS/Qwen3.8-2.4T-A95B-UD-IQ3_XXS-00001-of-00021.gguf",
+   "parts": 21,
+   "size_gb": 955.54,
+   "bits": 3.12,
+   "quant": "UD-IQ3_XXS",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ2_XXS",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "file": "UD-IQ2_XXS/Qwen3.8-2.4T-A95B-UD-IQ2_XXS-00001-of-00015.gguf",
+   "parts": 15,
+   "size_gb": 656.57,
+   "bits": 2.15,
+   "quant": "UD-IQ2_XXS",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "file": "UD-IQ1_M/Qwen3.8-2.4T-A95B-UD-IQ1_M-00001-of-00013.gguf",
+   "parts": 13,
+   "size_gb": 563.95,
+   "bits": 1.84,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "nightly",
+   "nightly": true,
+   "image": "vllm/vllm-openai:qwen38",
+   "args": [],
+   "env": {
+    "VLLM_ENGINE_READY_TIMEOUT_S": "3600"
+   },
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [
+    "uv pip install -U \"transformers>=5.4.0\""
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "qwen3_coder",
+   "reasoning_parser": "qwen3",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "qwen35moe",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm",
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser qwen3_coder --reasoning-parser qwen3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "Thinking is on by default. Turn it off per request with chat_template_kwargs {\"enable_thinking\": false}.",
+  "vLLM support needs a nightly build (recipe min version: nightly)."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/Qwen/qwen3.8.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/Qwen/Qwen3.8-2.4T-A95B.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/Qwen",
+  "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+  "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "https://huggingface.co/unsloth/Qwen3.8-2.4T-A95B-GGUF"
+ ]
+}

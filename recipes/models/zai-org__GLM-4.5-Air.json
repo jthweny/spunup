@@ -1,0 +1,283 @@
+{
+ "schema": 1,
+ "id": "zai-org/GLM-4.5-Air",
+ "name": "GLM-4.5-Air",
+ "family": "glm",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Glm4MoeForCausalLM",
+ "model_type": "glm4_moe",
+ "moe": true,
+ "params_b": 106.0,
+ "active_b": 12.0,
+ "layers": 46,
+ "experts": 128,
+ "max_context": 131072,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 192.94,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:zai-org/GLM-4.5-Air",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "zai-org/GLM-4.5-Air",
+   "size_gb": 220.9,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "Q8_0/GLM-4.5-Air-Q8_0-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 117.46,
+   "bits": 8.86,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "Q6_K/GLM-4.5-Air-Q6_K-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 99.01,
+   "bits": 7.47,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "Q5_K_M/GLM-4.5-Air-Q5_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 83.52,
+   "bits": 6.3,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "Q4_K_M/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 72.98,
+   "bits": 5.51,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "Q3_K_M/GLM-4.5-Air-Q3_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 57.2,
+   "bits": 4.32,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "GLM-4.5-Air-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 47.44,
+   "bits": 3.58,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "file": "GLM-4.5-Air-UD-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 40.06,
+   "bits": 3.02,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:lmstudio-community/GLM-4.5-Air-MLX-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "lmstudio-community/GLM-4.5-Air-MLX-8bit",
+   "size_gb": 113.6,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:lmstudio-community/GLM-4.5-Air-MLX-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "lmstudio-community/GLM-4.5-Air-MLX-4bit",
+   "size_gb": 60.1,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [],
+   "env": {},
+   "tool_parser": "glm45",
+   "reasoning_parser": "glm45",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "glm45",
+   "reasoning_parser": "glm45",
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/GLM-4.5-Air-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "glm4moe",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "lmstudio-community/GLM-4.5-Air-MLX-8bit",
+    "lmstudio-community/GLM-4.5-Air-MLX-4bit",
+    "lmstudio-community/GLM-4.5-Air-MLX-6bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --enable-auto-tool-choice --tool-call-parser glm45 --reasoning-parser glm45"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "For chat, pass chat_template_kwargs {\"clear_thinking\": true}; agents should keep the default."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/zai-org/glm-5.2.jsx",
+  "https://github.com/vllm-project/recipes/tree/main/models/zai-org",
+  "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF",
+  "https://huggingface.co/zai-org/GLM-4.5-Air",
+  "https://huggingface.co/zai-org/GLM-5.3",
+  "params: model card: 106B total, 12B active"
+ ]
+}

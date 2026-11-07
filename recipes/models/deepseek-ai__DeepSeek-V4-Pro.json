@@ -1,0 +1,205 @@
+{
+ "schema": 1,
+ "id": "deepseek-ai/DeepSeek-V4-Pro",
+ "name": "DeepSeek-V4-Pro",
+ "family": "deepseek",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "DeepseekV4ForCausalLM",
+ "model_type": "deepseek_v4",
+ "moe": true,
+ "params_b": 1600.0,
+ "active_b": 49.0,
+ "layers": 61,
+ "experts": 384,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 8.12,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "DeepSeek V4 compressed KV: head_dim/ratio per layer",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:deepseek-ai/DeepSeek-V4-Pro-0813",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "deepseek-ai/DeepSeek-V4-Pro-0813",
+   "size_gb": 892.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/DeepSeek-V4-Pro-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/DeepSeek-V4-Pro-NVFP4",
+   "size_gb": 913.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.20.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--kv-cache-dtype",
+    "fp8",
+    "--block-size",
+    "256",
+    "--tokenizer-mode"
+   ],
+   "env": {},
+   "tool_parser": "deepseek_v4",
+   "reasoning_parser": "deepseek_v4",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {
+    "hopper": {
+     "args": [
+      "--max-model-len",
+      "800000",
+      "--gpu-memory-utilization",
+      "0.95",
+      "--max-num-seqs",
+      "512",
+      "--no-enable-flashinfer-autotune",
+      "--compilation-config",
+      "{\"mode\": 0, \"cudagraph_mode\": \"FULL_DECODE_ONLY\"}"
+     ],
+     "env": {}
+    },
+    "blackwell": {
+     "args": [
+      "--attention_config.indexer_kv_dtype=mxfp4"
+     ],
+     "env": {}
+    }
+   },
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "deepseekv4",
+   "reasoning_parser": "deepseek-v4",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": false,
+   "repo": null,
+   "min_build": "b12110",
+   "gguf_arch": null,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/DeepSeek-V4-Pro",
+    "mlx-community/DeepSeek-V4-Pro-4bit",
+    "mlx-community/DeepSeek-V4-Pro-8bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --kv-cache-dtype fp8 --block-size 256 --tokenizer-mode --enable-auto-tool-choice --tool-call-parser deepseek_v4 --reasoning-parser deepseek_v4"
+  },
+  "cpu": {
+   "best": null,
+   "others": [],
+   "command": null
+  },
+  "mixed": {
+   "best": null,
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": null
+  },
+  "mac": {
+   "best": null,
+   "others": [],
+   "command": null
+  }
+ },
+ "known_issues": [
+  "DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt.",
+  "No GGUF build from a trusted publisher yet, so CPU, mixed GPU+RAM and Mac setups are not available."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/deepseek-ai/deepseek-v4.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/deepseek-ai/DeepSeek-V4-Pro.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/deepseek-ai",
+  "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+  "params: vLLM recipe: 1600B / 49B"
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "schema": 1,
+ "id": "deepseek",
+ "name": "DeepSeek",
+ "hf_orgs": [
+  "deepseek-ai"
+ ],
+ "model_types": [
+  "deepseek_v4",
+  "deepseek_v41",
+  "deepseek_v32",
+  "deepseek_v3"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "deepseek_v4",
+   "reasoning_parser": "deepseek_v4",
+   "args": [
+    "--trust-remote-code",
+    "--tokenizer-mode",
+    "deepseek_v4",
+    "--kv-cache-dtype",
+    "fp8",
+    "--block-size",
+    "256"
+   ],
+   "chat_template": null,
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "deepseekv4",
+   "reasoning_parser": "deepseek-v4",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --tokenizer-mode deepseek_v4 --kv-cache-dtype fp8 --block-size 256 --enable-auto-tool-choice --tool-call-parser deepseek_v4 --reasoning-parser deepseek_v4"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt."
+ ],
+ "members": [
+  "deepseek-ai/DeepSeek-V3.2",
+  "deepseek-ai/DeepSeek-V4-Flash-0731",
+  "deepseek-ai/DeepSeek-V4-Pro",
+  "deepseek-ai/DeepSeek-V4-Pro-0813",
+  "deepseek-ai/DeepSeek-V4.1-Flash",
+  "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/deepseek-ai",
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/deepseek-ai/deepseek-v4.jsx"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "deepseek-ai"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "deepseek-ai"
+ ]
+}

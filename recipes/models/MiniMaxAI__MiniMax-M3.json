@@ -1,0 +1,329 @@
+{
+ "schema": 1,
+ "id": "MiniMaxAI/MiniMax-M3",
+ "name": "MiniMax-M3",
+ "family": "minimax",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "MiniMaxM3SparseForConditionalGeneration",
+ "model_type": "minimax_m3_vl",
+ "moe": true,
+ "params_b": 428.0,
+ "active_b": 23.0,
+ "layers": 60,
+ "experts": 128,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 188.74,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim; plus sparse index keys",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "bf16:MiniMaxAI/MiniMax-M3",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "MiniMaxAI/MiniMax-M3",
+   "size_gb": 854.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "mxfp8:MiniMaxAI/MiniMax-M3-MXFP8",
+   "label": "MXFP8",
+   "format": "safetensors",
+   "repo": "MiniMaxAI/MiniMax-M3-MXFP8",
+   "size_gb": 443.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--attention_config.indexer_kv_dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/MiniMax-M3-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/MiniMax-M3-NVFP4",
+   "size_gb": 250.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--trust-remote-code",
+    "--kv-cache-dtype",
+    "fp8",
+    "--attention_config.backend",
+    "FLASHINFER",
+    "--attention_config.use_trtllm_attention",
+    "true",
+    "--attention_config.indexer_kv_dtype",
+    "fp8",
+    "--attention_config.minimax_m3_msa_decode_backend",
+    "cutlass"
+   ],
+   "gated": null
+  },
+  {
+   "id": "mxfp4:amd/MiniMax-M3-MXFP4",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "amd/MiniMax-M3-MXFP4",
+   "size_gb": 242.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q8_0/MiniMax-M3-Q8_0-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 453.61,
+   "bits": 8.48,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q6_K/MiniMax-M3-Q6_K-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 369.4,
+   "bits": 6.9,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q5_K_M/MiniMax-M3-Q5_K_M-00001-of-00008.gguf",
+   "parts": 8,
+   "size_gb": 305.35,
+   "bits": 5.71,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q4_K_M/MiniMax-M3-Q4_K_M-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 261.28,
+   "bits": 4.88,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q3_K_M/MiniMax-M3-Q3_K_M-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 196.61,
+   "bits": 3.67,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K_L",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-Q2_K_L/MiniMax-M3-Q2_K_L-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 153.09,
+   "bits": 2.86,
+   "quant": "Q2_K_L",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "file": "MiniMax-M3-IQ1_M/MiniMax-M3-IQ1_M-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 100.74,
+   "bits": 1.88,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/MiniMax-M3-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/MiniMax-M3-4bit",
+   "size_gb": 241.5,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.24.0",
+   "nightly": true,
+   "image": "vllm/vllm-openai:minimax-m3",
+   "args": [
+    "--block-size",
+    "128"
+   ],
+   "env": {},
+   "tool_parser": "minimax_m3",
+   "reasoning_parser": "minimax_m3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "auto",
+   "reasoning_parser": "auto",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "minimax-m3",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/MiniMax-M3-4bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm",
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser auto --reasoning-parser auto"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "MiniMax M2.x use the minimax_m2 parsers instead.",
+  "vLLM support needs a nightly build (recipe min version: 0.24.0)."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/MiniMaxAI/minimax-m3.1.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/MiniMaxAI/MiniMax-M3.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/MiniMaxAI",
+  "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+  "https://huggingface.co/bartowski/MiniMax-M3-GGUF",
+  "params: model card: ~428B total, ~23B activated"
+ ]
+}

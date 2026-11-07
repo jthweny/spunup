@@ -1,0 +1,292 @@
+{
+ "schema": 1,
+ "id": "reflection/Beam-1.0-501B-A23B",
+ "name": "Beam-1.0-501B-A23B",
+ "family": "beam",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "BeamForCausalLM",
+ "model_type": "beam",
+ "moe": true,
+ "params_b": 501.3,
+ "active_b": 23.0,
+ "layers": 52,
+ "experts": 256,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 37.75,
+  "fixed_mb": 90.2,
+  "dtype": "16-bit",
+  "method": "layer_types; 2 x kv_heads x head_dim",
+  "estimate": false
+ },
+ "quants": [
+  {
+   "id": "nvfp4:reflection/Beam-1.0-501B-A23B-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "reflection/Beam-1.0-501B-A23B-NVFP4",
+   "size_gb": 293.6,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:reflection/Beam-1.0-501B-A23B-FP8",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "reflection/Beam-1.0-501B-A23B-FP8",
+   "size_gb": 503.3,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--moe-backend",
+    "triton"
+   ],
+   "gated": null
+  },
+  {
+   "id": "bf16:reflection/Beam-1.0-501B-A23B",
+   "label": "BF16",
+   "format": "safetensors",
+   "repo": "reflection/Beam-1.0-501B-A23B",
+   "size_gb": 1002.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "auto"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q8_0/Beam-1.0-501B-A23B-Q8_0-00001-of-00014.gguf",
+   "parts": 14,
+   "size_gb": 532.79,
+   "bits": 8.5,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q6_K/Beam-1.0-501B-A23B-Q6_K-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 441.78,
+   "bits": 7.05,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q5_K_M/Beam-1.0-501B-A23B-Q5_K_M-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 380.78,
+   "bits": 6.08,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q4_K_M/Beam-1.0-501B-A23B-Q4_K_M-00001-of-00009.gguf",
+   "parts": 9,
+   "size_gb": 314.53,
+   "bits": 5.02,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q3_K_M/Beam-1.0-501B-A23B-Q3_K_M-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 236.62,
+   "bits": 3.78,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q2_K",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-Q2_K/Beam-1.0-501B-A23B-Q2_K-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 190.66,
+   "bits": 3.04,
+   "quant": "Q2_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "file": "Beam-1.0-501B-A23B-IQ1_M/Beam-1.0-501B-A23B-IQ1_M-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 123.56,
+   "bits": 1.97,
+   "quant": "IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.33.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "env": {
+    "VLLM_ENGINE_READY_TIMEOUT_S": "3600"
+   },
+   "tool_parser": "beam",
+   "reasoning_parser": "beam",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "beam",
+   "reasoning_parser": "beam",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "bartowski/Beam-1.0-501B-A23B-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "beam",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --kv-cache-dtype fp8 --enable-auto-tool-choice --tool-call-parser beam --reasoning-parser beam"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/reflection/beam-1.0.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/reflection/Beam-1.0-501B-A23B.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/reflection",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#beam-models-beam",
+  "https://huggingface.co/bartowski/Beam-1.0-501B-A23B-GGUF",
+  "https://huggingface.co/reflection/Beam-1.0-501B-A23B"
+ ]
+}

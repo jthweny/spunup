@@ -1,0 +1,307 @@
+{
+ "schema": 1,
+ "id": "deepseek-ai/DeepSeek-V3.2",
+ "name": "DeepSeek-V3.2",
+ "family": "deepseek",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "DeepseekV32ForCausalLM",
+ "model_type": "deepseek_v32",
+ "moe": true,
+ "params_b": 685.4,
+ "active_b": 37.0,
+ "layers": 61,
+ "experts": 256,
+ "max_context": 163840,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "mit",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 79.95,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "MLA latent (kv_lora_rank + rope dim)",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:deepseek-ai/DeepSeek-V3.2",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "deepseek-ai/DeepSeek-V3.2",
+   "size_gb": 689.5,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "nvfp4:nvidia/DeepSeek-V3.2-NVFP4",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "nvidia/DeepSeek-V3.2-NVFP4",
+   "size_gb": 415.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "Q8_0/DeepSeek-V3.2-Q8_0-00001-of-00015.gguf",
+   "parts": 15,
+   "size_gb": 713.29,
+   "bits": 8.33,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "Q6_K/DeepSeek-V3.2-Q6_K-00001-of-00012.gguf",
+   "parts": 12,
+   "size_gb": 551.31,
+   "bits": 6.43,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "Q5_K_M/DeepSeek-V3.2-Q5_K_M-00001-of-00010.gguf",
+   "parts": 10,
+   "size_gb": 476.16,
+   "bits": 5.56,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "Q4_K_M/DeepSeek-V3.2-Q4_K_M-00001-of-00009.gguf",
+   "parts": 9,
+   "size_gb": 405.4,
+   "bits": 4.73,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "Q3_K_M/DeepSeek-V3.2-Q3_K_M-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 320.23,
+   "bits": 3.74,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "UD-Q2_K_XL/DeepSeek-V3.2-UD-Q2_K_XL-00001-of-00006.gguf",
+   "parts": 6,
+   "size_gb": 246.61,
+   "bits": 2.88,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "file": "UD-IQ1_M/DeepSeek-V3.2-UD-IQ1_M-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 199.31,
+   "bits": 2.33,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/DeepSeek-V3.2-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/DeepSeek-V3.2-4bit",
+   "size_gb": 378.1,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/DeepSeek-V3.2-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "mlx-community/DeepSeek-V3.2-8bit",
+   "size_gb": 756.0,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.18.0",
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--kernel-config.enable_flashinfer_autotune=False",
+    "--tokenizer-mode",
+    "deepseek_v32"
+   ],
+   "env": {},
+   "tool_parser": "deepseek_v32",
+   "reasoning_parser": "deepseek_v3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [
+    "uv pip install git+https://github.com/deepseek-ai/DeepGEMM.git@v2.1.1.post3 --no-build-isolation"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "deepseekv32",
+   "reasoning_parser": "deepseek",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/DeepSeek-V3.2-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "deepseek2",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/DeepSeek-V3.2-4bit",
+    "mlx-community/DeepSeek-V3.2-8bit",
+    "mlx-community/DeepSeek-V3.2_bf16"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --trust-remote-code --kernel-config.enable_flashinfer_autotune=False --tokenizer-mode deepseek_v32 --enable-auto-tool-choice --tool-call-parser deepseek_v32 --reasoning-parser deepseek_v3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/deepseek-ai/deepseek-v4.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/deepseek-ai/DeepSeek-V3.2.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/deepseek-ai",
+  "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+  "https://huggingface.co/unsloth/DeepSeek-V3.2-GGUF"
+ ]
+}

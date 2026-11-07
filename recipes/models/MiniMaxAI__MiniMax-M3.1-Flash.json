@@ -1,0 +1,242 @@
+{
+ "schema": 1,
+ "id": "MiniMaxAI/MiniMax-M3.1-Flash",
+ "name": "MiniMax-M3.1-Flash",
+ "family": "minimax",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "MiniMaxM3SparseForConditionalGeneration",
+ "model_type": "minimax_m3_vl",
+ "moe": true,
+ "params_b": 428.0,
+ "active_b": 23.0,
+ "layers": 60,
+ "experts": 128,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 188.74,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim; plus sparse index keys",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp4:MiniMaxAI/MiniMax-M3.1-Flash",
+   "label": "FP4",
+   "format": "safetensors",
+   "repo": "MiniMaxAI/MiniMax-M3.1-Flash",
+   "size_gb": 250.1,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:UD-Q8_K_XL",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/MiniMax-M3.1-Flash-GGUF",
+   "file": "UD-Q8_K_XL/MiniMax-M3.1-Flash-UD-Q8_K_XL-00001-of-00007.gguf",
+   "parts": 7,
+   "size_gb": 259.08,
+   "bits": 4.84,
+   "quant": "UD-Q8_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q3_K_XL",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/MiniMax-M3.1-Flash-GGUF",
+   "file": "UD-Q3_K_XL/MiniMax-M3.1-Flash-UD-Q3_K_XL-00001-of-00005.gguf",
+   "parts": 5,
+   "size_gb": 193.95,
+   "bits": 3.63,
+   "quant": "UD-Q3_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/MiniMax-M3.1-Flash-GGUF",
+   "file": "UD-Q2_K_XL/MiniMax-M3.1-Flash-UD-Q2_K_XL-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 143.91,
+   "bits": 2.69,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/MiniMax-M3.1-Flash-GGUF",
+   "file": "UD-IQ1_M/MiniMax-M3.1-Flash-UD-IQ1_M-00001-of-00004.gguf",
+   "parts": 4,
+   "size_gb": 129.36,
+   "bits": 2.42,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/MiniMax-M3.1-Flash-Text-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/MiniMax-M3.1-Flash-Text-4bit",
+   "size_gb": 248.4,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/MiniMax-M3.1-Flash-Text-3bit",
+   "label": "MLX 3-bit",
+   "format": "mlx",
+   "repo": "mlx-community/MiniMax-M3.1-Flash-Text-3bit",
+   "size_gb": 186.5,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--block-size",
+    "128"
+   ],
+   "env": {},
+   "tool_parser": "minimax_m3",
+   "reasoning_parser": "minimax_m3",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "minimax-m3",
+   "reasoning_parser": "minimax-m3",
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/MiniMax-M3.1-Flash-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "minimax-m3",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/MiniMax-M3.1-Flash-Text-4bit",
+    "mlx-community/MiniMax-M3.1-Flash-Text-3bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --block-size 128 --enable-auto-tool-choice --tool-call-parser minimax_m3 --reasoning-parser minimax_m3"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  }
+ },
+ "known_issues": [
+  "MiniMax M2.x use the minimax_m2 parsers instead."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/MiniMaxAI/minimax-m3.1.jsx",
+  "https://github.com/vllm-project/recipes/tree/main/models/MiniMaxAI",
+  "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+  "https://huggingface.co/unsloth/MiniMax-M3.1-Flash-GGUF",
+  "params: model card: ~428B total, 23B activated"
+ ]
+}

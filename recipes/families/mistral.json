@@ -1,0 +1,142 @@
+{
+ "schema": 1,
+ "id": "mistral",
+ "name": "Mistral",
+ "hf_orgs": [
+  "mistralai"
+ ],
+ "model_types": [
+  "mistral3",
+  "ministral3",
+  "mistral_large4",
+  "mistral4",
+  "mistral"
+ ],
+ "checked": "2026-11-06",
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "tool_parser": "mistral",
+   "reasoning_parser": null,
+   "args": [
+    "--tokenizer_mode",
+    "mistral",
+    "--config_format",
+    "mistral",
+    "--load_format",
+    "mistral"
+   ],
+   "chat_template": null,
+   "env": {},
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default."
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "mistral",
+   "reasoning_parser": null,
+   "args": [],
+   "lora": {
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}"
+    ]
+   },
+   "caching": "Radix cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ]
+   },
+   "caching": "--cache-prompt on by default; spunup adds --cache-reuse 256."
+  },
+  "mlx": {
+   "supported": true,
+   "args": [],
+   "lora": {
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache built in."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "vllm",
+   "others": [
+    "sglang",
+    "llamacpp"
+   ],
+   "command": "vllm serve {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --max-model-len {ctx} --gpu-memory-utilization 0.90 --tensor-parallel-size {gpus} --tokenizer_mode mistral --config_format mistral --load_format mistral --enable-auto-tool-choice --tool-call-parser mistral"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers} {cpu_moe}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "notes": [
+  "Reasoning models (Magistral, *-Reasoning, Medium 3.5, Small 4, Large 4) add --reasoning-parser mistral."
+ ],
+ "members": [
+  "mistralai/Devstral-2-123B-Instruct-2512",
+  "mistralai/Devstral-Small-2-24B-Instruct-2512",
+  "mistralai/Magistral-Small-2509",
+  "mistralai/Ministral-3-14B-Instruct-2512",
+  "mistralai/Ministral-3-14B-Reasoning-2512",
+  "mistralai/Ministral-3-3B-Instruct-2512",
+  "mistralai/Ministral-3-8B-Instruct-2512",
+  "mistralai/Mistral-Large-4-1T-A52B",
+  "mistralai/Mistral-Medium-3.5-128B",
+  "mistralai/Mistral-Small-4-119B-2603"
+ ],
+ "sources": [
+  "https://github.com/vllm-project/recipes/tree/main/models/mistralai",
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Mistral",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#mistral-models-mistral"
+ ],
+ "gguf_publishers": [
+  "ggml-org",
+  "unsloth",
+  "bartowski",
+  "lmstudio-community",
+  "mistralai"
+ ],
+ "mlx_publishers": [
+  "mlx-community",
+  "lmstudio-community",
+  "mistralai"
+ ]
+}

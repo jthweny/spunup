@@ -1,0 +1,255 @@
+"""Hand-checked family definitions.
+
+Every parser name and flag here was read from the sources listed in `sources`
+(vLLM recipes repo, SGLang cookbook configs, vLLM docs, model cards) on
+2026-11-06. Model recipes inherit from these and override per model.
+"""
+
+VLLM_RECIPES = "https://github.com/vllm-project/recipes/tree/main/models"
+SGL_COOKBOOK = "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive"
+SGL_CONFIGS = "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs"
+VLLM_TOOLS_DOC = "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md"
+VLLM_REASON_DOC = "https://github.com/vllm-project/vllm/blob/main/docs/features/reasoning_outputs.md"
+TEMPLATE_BASE = "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/examples/"
+
+FAMILIES = {
+    "qwen": dict(
+        name="Qwen", orgs=["Qwen"],
+        model_types=["qwen3", "qwen3_moe", "qwen3_next", "qwen3_5", "qwen3_5_moe", "qwen3_5_moe_text", "qwen4_exp", "qwen2", "qwen2_moe"],
+        vllm=dict(tool="qwen3_coder", reasoning="qwen3", args=["--trust-remote-code"]),
+        sglang=dict(tool="qwen3_coder", reasoning="qwen3"),
+        notes=["Thinking is on by default. Turn it off per request with chat_template_kwargs {\"enable_thinking\": false}."],
+        sources=[VLLM_RECIPES + "/Qwen", SGL_CONFIGS + "/Qwen/qwen3.8.jsx", "https://huggingface.co/Qwen/Qwen3.8-27B"],
+    ),
+    "deepseek": dict(
+        name="DeepSeek", orgs=["deepseek-ai"],
+        model_types=["deepseek_v4", "deepseek_v41", "deepseek_v32", "deepseek_v3"],
+        vllm=dict(tool="deepseek_v4", reasoning="deepseek_v4", args=["--trust-remote-code", "--tokenizer-mode", "deepseek_v4", "--kv-cache-dtype", "fp8", "--block-size", "256"]),
+        sglang=dict(tool="deepseekv4", reasoning="deepseek-v4"),
+        notes=["DeepSeek V4/V4.1 ship no Jinja chat template; the runtime's DeepSeek tokenizer mode builds the prompt."],
+        sources=[VLLM_RECIPES + "/deepseek-ai", SGL_CONFIGS + "/deepseek-ai/deepseek-v4.jsx"],
+    ),
+    "kimi": dict(
+        name="Kimi (Moonshot)", orgs=["moonshotai"],
+        model_types=["kimi_k3", "kimi_k31", "kimi_k25", "kimi_k2", "kimi_linear"],
+        vllm=dict(tool="kimi_k3", reasoning="kimi_k3", args=["--trust-remote-code"]),
+        sglang=dict(tool="kimi_k3", reasoning="kimi_k3"),
+        notes=["Kimi K3 always thinks. For tool calls, send the full assistant message back (with reasoning_content) as-is."],
+        sources=[VLLM_RECIPES + "/moonshotai", SGL_CONFIGS + "/moonshotai/kimi-k3.jsx", "https://huggingface.co/moonshotai/Kimi-K3"],
+    ),
+    "glm": dict(
+        name="GLM (Z.ai)", orgs=["zai-org"],
+        model_types=["glm_moe_dsa", "glm5_next", "glm4_moe", "glm4_moe_lite"],
+        vllm=dict(tool="glm47", reasoning="glm47", args=[]),
+        sglang=dict(tool="glm47", reasoning="glm45"),
+        notes=["For chat, pass chat_template_kwargs {\"clear_thinking\": true}; agents should keep the default."],
+        sources=[VLLM_RECIPES + "/zai-org", SGL_CONFIGS + "/zai-org/glm-5.2.jsx", "https://huggingface.co/zai-org/GLM-5.3"],
+    ),
+    "llama": dict(
+        name="Llama (Meta)", orgs=["meta-llama"],
+        model_types=["llama", "llama4"],
+        vllm=dict(tool="llama3_json", reasoning=None, args=[], chat_template_url=TEMPLATE_BASE + "tool_chat_template_llama3.1_json.jinja"),
+        sglang=dict(tool="llama3", reasoning=None),
+        notes=["Llama 3 does not support parallel tool calls (vLLM docs)."],
+        sources=[VLLM_TOOLS_DOC + "#llama-models-llama3_json", SGL_COOKBOOK + "/Meta/Llama3.1.mdx"],
+    ),
+    "muse": dict(
+        name="Muse (Meta)", orgs=["meta-models"],
+        model_types=["muse_glimmer", "muse_spark"],
+        vllm=dict(tool="muse_glimmer", reasoning="muse_glimmer", args=["--generation-config", "auto"]),
+        sglang=dict(tool="muse", reasoning="muse"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/meta-models", SGL_CONFIGS + "/meta-models/muse-glimmer.jsx", VLLM_TOOLS_DOC + "#muse-models-muse"],
+    ),
+    "mistral": dict(
+        name="Mistral", orgs=["mistralai"],
+        model_types=["mistral3", "ministral3", "mistral_large4", "mistral4", "mistral"],
+        vllm=dict(tool="mistral", reasoning=None, args=["--tokenizer_mode", "mistral", "--config_format", "mistral", "--load_format", "mistral"]),
+        sglang=dict(tool="mistral", reasoning=None),
+        notes=["Reasoning models (Magistral, *-Reasoning, Medium 3.5, Small 4, Large 4) add --reasoning-parser mistral."],
+        sources=[VLLM_RECIPES + "/mistralai", SGL_COOKBOOK + "/Mistral", VLLM_TOOLS_DOC + "#mistral-models-mistral"],
+    ),
+    "gemma": dict(
+        name="Gemma (Google)", orgs=["google"],
+        model_types=["gemma4", "gemma4_unified", "gemma3"],
+        vllm=dict(tool="gemma4", reasoning="gemma4", args=[], chat_template_url=TEMPLATE_BASE + "tool_chat_template_gemma4.jinja"),
+        sglang=dict(tool="gemma4", reasoning="gemma4"),
+        notes=["Gemma 4 thinking is off by default; set reasoning_effort or chat_template_kwargs {\"enable_thinking\": true}."],
+        sources=[VLLM_RECIPES + "/Google", SGL_COOKBOOK + "/Google/Gemma4.mdx", VLLM_REASON_DOC],
+    ),
+    "gpt-oss": dict(
+        name="gpt-oss (OpenAI)", orgs=["openai"],
+        model_types=["gpt_oss"],
+        vllm=dict(tool="openai", reasoning=None, args=[]),
+        sglang=dict(tool="gpt-oss", reasoning="gpt-oss"),
+        notes=["Reasoning comes from the Harmony format; vLLM separates it without a reasoning parser flag."],
+        sources=[VLLM_RECIPES + "/openai", SGL_COOKBOOK + "/OpenAI/GPT-OSS.mdx", VLLM_TOOLS_DOC + "#openai-oss-models-openai"],
+    ),
+    "minimax": dict(
+        name="MiniMax", orgs=["MiniMaxAI"],
+        model_types=["minimax_m2", "minimax_m3_vl", "minimax_m3"],
+        vllm=dict(tool="minimax_m3", reasoning="minimax_m3", args=["--block-size", "128"]),
+        sglang=dict(tool="minimax-m3", reasoning="minimax-m3"),
+        notes=["MiniMax M2.x use the minimax_m2 parsers instead."],
+        sources=[VLLM_RECIPES + "/MiniMaxAI", SGL_CONFIGS + "/MiniMaxAI/minimax-m3.1.jsx"],
+    ),
+    "mimo": dict(
+        name="MiMo (Xiaomi)", orgs=["XiaomiMiMo"],
+        model_types=["mimo_v2", "mimo_v2_flash"],
+        vllm=dict(tool="mimo", reasoning="mimo", args=["--trust-remote-code", "--generation-config", "vllm"]),
+        sglang=dict(tool="mimo", reasoning="mimo"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/XiaomiMiMo", SGL_CONFIGS + "/XiaomiMiMo/mimo-v2.6.jsx", VLLM_TOOLS_DOC + "#mimo-v26-models-mimo"],
+    ),
+    "nemotron": dict(
+        name="Nemotron (NVIDIA)", orgs=["nvidia"],
+        model_types=["nemotron_h"],
+        vllm=dict(tool="qwen3_coder", reasoning="nemotron_v3", args=["--trust-remote-code"]),
+        sglang=dict(tool="qwen3_coder", reasoning="nemotron_3"),
+        notes=["NVIDIA's org also hosts quantized copies of other families; those keep their own family."],
+        sources=[VLLM_RECIPES + "/nvidia", SGL_CONFIGS + "/nvidia/nemotron-3.5-lightning.jsx"],
+    ),
+    "lfm": dict(
+        name="LFM (Liquid AI)", orgs=["LiquidAI"],
+        model_types=["lfm2", "lfm2_moe", "lfm3"],
+        vllm=dict(tool="lfm2", reasoning="qwen3", args=[]),
+        sglang=dict(tool="lfm2", reasoning="qwen3"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/LiquidAI", SGL_CONFIGS + "/LiquidAI/lfm2.5.jsx"],
+    ),
+    "ornith": dict(
+        name="Ornith (DeepReinforce)", orgs=["ornith-ai"],
+        model_types=[],
+        vllm=dict(tool="qwen3_coder", reasoning="qwen3", args=["--trust-remote-code"]),
+        sglang=dict(tool="qwen3_coder", reasoning="qwen3"),
+        notes=["Ornith models use the Qwen3.5 architecture."],
+        sources=["https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B", SGL_CONFIGS + "/ornith-ai/ornith-1.5.jsx"],
+    ),
+    "hunyuan": dict(
+        name="Hunyuan / Hy (Tencent)", orgs=["tencent"],
+        model_types=["hy_v3", "hy_v4", "hunyuan_v1_moe"],
+        vllm=dict(tool="hy_v3", reasoning="hy_v3", args=[]),
+        sglang=dict(tool="auto", reasoning="auto"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/tencent", SGL_CONFIGS + "/tencent/hy3.jsx"],
+    ),
+    "laguna": dict(
+        name="Laguna (Poolside)", orgs=["poolside"],
+        model_types=["laguna"],
+        vllm=dict(tool="poolside_v1", reasoning="poolside_v1", args=["--trust-remote-code"]),
+        sglang=dict(tool="poolside_v1", reasoning="poolside_v1"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/poolside", SGL_CONFIGS + "/poolside/laguna-xs21.jsx"],
+    ),
+    "step": dict(
+        name="Step (StepFun)", orgs=["stepfun-ai"],
+        model_types=["step3p5", "step3p7"],
+        vllm=dict(tool="step3p5", reasoning="step3p5", args=["--trust-remote-code"]),
+        sglang=dict(tool="step3p5", reasoning="step3p5"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/stepfun-ai", SGL_COOKBOOK + "/StepFun/Step-3.7-Flash.mdx", VLLM_TOOLS_DOC + "#step-35-and-step-37-models-step3p5"],
+    ),
+    "granite": dict(
+        name="Granite (IBM)", orgs=["ibm-granite"],
+        model_types=["granite", "granitemoehybrid"],
+        vllm=dict(tool="granite_toolcall_parser", reasoning="granite_thinking_parser", args=[]),
+        sglang=dict(tool="auto", reasoning="auto"),
+        notes=["The Granite 4.2 model card uses --tool-call-parser qwen3_coder with a plugin reasoning parser; vLLM's docs list built-in granite_toolcall_parser / granite_thinking_parser. spunup uses the built-in ones."],
+        sources=[VLLM_TOOLS_DOC + "#ibm-granite", VLLM_REASON_DOC, "https://huggingface.co/ibm-granite/granite-4.2-8b", SGL_CONFIGS + "/ibm-granite/granite-4.2.jsx"],
+    ),
+    "minicpm": dict(
+        name="MiniCPM (OpenBMB)", orgs=["openbmb"],
+        model_types=["minicpm5", "minicpm"],
+        vllm=dict(tool="minicpm5", reasoning=None, args=["--default-chat-template-kwargs", "{\"enable_thinking\": true}"]),
+        sglang=dict(tool="minicpm5", reasoning="qwen3"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/openbmb", SGL_CONFIGS + "/openbmb/minicpm5-2b.jsx"],
+    ),
+    "ling": dict(
+        name="Ling (inclusionAI)", orgs=["inclusionAI"],
+        model_types=["bailing_hybrid", "bailing_moe_v3"],
+        vllm=dict(tool="ling3", reasoning="ling3", args=["--trust-remote-code"]),
+        sglang=dict(tool="ling3", reasoning="ling3"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/inclusionAI", SGL_CONFIGS + "/inclusionAI/ling-3.1-flash.jsx"],
+    ),
+    "mellum": dict(
+        name="Mellum (JetBrains)", orgs=["JetBrains"],
+        model_types=["mellum"],
+        vllm=dict(tool="hermes", reasoning="qwen3", args=["--trust-remote-code"]),
+        sglang=dict(tool="hermes", reasoning="qwen3"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/JetBrains", "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking"],
+    ),
+    "nanbeige": dict(
+        name="Nanbeige", orgs=["Nanbeige"],
+        model_types=["nanbeige"],
+        vllm=dict(tool="qwen3_coder", reasoning="qwen3", args=[]),
+        sglang=dict(tool="qwen3_coder", reasoning="qwen3"),
+        notes=["Nanbeige4.3 uses the Llama architecture; parsers come from its model card."],
+        sources=["https://huggingface.co/Nanbeige/Nanbeige4.3-33B"],
+    ),
+    "beam": dict(
+        name="Beam (Reflection)", orgs=["reflection"],
+        model_types=["beam"],
+        vllm=dict(tool="beam", reasoning="beam", args=["--kv-cache-dtype", "fp8"]),
+        sglang=dict(tool="beam", reasoning="beam"),
+        notes=[],
+        sources=[VLLM_RECIPES + "/reflection", SGL_CONFIGS + "/reflection/beam-1.0.jsx", VLLM_TOOLS_DOC + "#beam-models-beam"],
+    ),
+    "inkling": dict(
+        name="Inkling (Thinking Machines)", orgs=["thinkingmachines"],
+        model_types=["inkling"],
+        vllm=dict(tool="inkling", reasoning="inkling", args=["--trust-remote-code", "--tokenizer-mode", "inkling"]),
+        sglang=dict(tool="inkling", reasoning="inkling"),
+        notes=["vLLM support needs a nightly build and VLLM_USE_V2_MODEL_RUNNER=1."],
+        sources=[VLLM_RECIPES + "/thinkingmachines", SGL_CONFIGS + "/thinkingmachines/inkling.jsx"],
+    ),
+}
+
+# Models in the research list that belong to a family not named by their org.
+ORG_FAMILY_OVERRIDE = {
+    "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-BF16": "nemotron",  # Gemma 4 architecture, NVIDIA post-train
+}
+
+# Per-model parser/flag overrides where a model differs from its family default.
+# Each override is backed by the model's own vLLM recipe / SGLang config / card.
+MODEL_OVERRIDES = {
+    "Qwen/Qwen3-8B": dict(vllm=dict(tool="hermes"), sglang=dict(tool="qwen25")),
+    "Qwen/Qwen3-14B": dict(vllm=dict(tool="hermes"), sglang=dict(tool="qwen25")),
+    "Qwen/Qwen3-32B": dict(vllm=dict(tool="hermes"), sglang=dict(tool="qwen25")),
+    "Qwen/Qwen3-4B-Instruct-2507": dict(vllm=dict(tool="hermes", reasoning=None), sglang=dict(tool="qwen25", reasoning=None)),
+    "Qwen/Qwen3-30B-A3B-Instruct-2507": dict(vllm=dict(tool="hermes", reasoning=None), sglang=dict(tool="qwen25", reasoning=None)),
+    "Qwen/Qwen3-Coder-30B-A3B-Instruct": dict(vllm=dict(reasoning=None), sglang=dict(reasoning=None)),
+    "Qwen/Qwen3-Coder-Next": dict(vllm=dict(reasoning=None), sglang=dict(reasoning=None)),
+    "deepseek-ai/DeepSeek-V4.1-Flash": dict(vllm=dict(tool="deepseek_v41", reasoning="deepseek_v41", args=["--tokenizer-mode", "deepseek_v41"]), sglang=dict(tool="auto", reasoning="auto")),
+    "deepseek-ai/DeepSeek-V4.1-Flash-1017": dict(vllm=dict(tool="deepseek_v41", reasoning="deepseek_v41", args=["--tokenizer-mode", "deepseek_v41"]), sglang=dict(tool="auto", reasoning="auto")),
+    "deepseek-ai/DeepSeek-V3.2": dict(vllm=dict(tool="deepseek_v32", reasoning="deepseek_v3", args=["--trust-remote-code", "--tokenizer-mode", "deepseek_v32"]), sglang=dict(tool="deepseekv32", reasoning="deepseek")),
+    "moonshotai/Kimi-K2.6": dict(vllm=dict(tool="kimi_k2", reasoning="kimi_k2"), sglang=dict(tool="kimi_k2", reasoning="kimi_k2")),
+    "moonshotai/Kimi-K2.7-Code": dict(vllm=dict(tool="kimi_k2", reasoning="kimi_k2"), sglang=dict(tool="kimi_k2", reasoning="kimi_k2")),
+    "moonshotai/Kimi-Linear-48B-A3B-Instruct": dict(vllm=dict(tool="kimi_k2", reasoning=None), sglang=dict(tool="kimi_k2", reasoning=None),
+        issues=["The vLLM recipe pins vllm==0.11.2 for Kimi Linear; newer vLLM is not listed as tested. Tool parser kimi_k2 is assumed from the family (not in the recipe)."]),
+    "zai-org/GLM-4.5-Air": dict(vllm=dict(tool="glm45", reasoning="glm45"), sglang=dict(tool="glm45", reasoning="glm45")),
+    "zai-org/GLM-4.7-Flash": dict(vllm=dict(tool="glm47", reasoning="glm45"), sglang=dict(tool="glm47", reasoning="glm45")),
+    "zai-org/GLM-5.3": dict(sglang=dict(tool="auto", reasoning="auto")),
+    "meta-llama/Llama-3.2-1B-Instruct": dict(vllm=dict(chat_template_url=TEMPLATE_BASE + "tool_chat_template_llama3.2_json.jinja")),
+    "meta-llama/Llama-3.2-3B-Instruct": dict(vllm=dict(chat_template_url=TEMPLATE_BASE + "tool_chat_template_llama3.2_json.jinja")),
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct": dict(vllm=dict(tool="llama4_pythonic", chat_template_url=TEMPLATE_BASE + "tool_chat_template_llama4_pythonic.jinja"), sglang=dict(tool="pythonic")),
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct": dict(vllm=dict(tool="llama4_pythonic", chat_template_url=TEMPLATE_BASE + "tool_chat_template_llama4_pythonic.jinja"), sglang=dict(tool="pythonic")),
+    "meta-models/Muse-Spark-Open-816B-A42B": dict(vllm=dict(tool="muse", reasoning="muse", args=[])),
+    "mistralai/Magistral-Small-2509": dict(vllm=dict(reasoning="mistral"), sglang=dict(reasoning="mistral")),
+    "mistralai/Ministral-3-14B-Reasoning-2512": dict(vllm=dict(reasoning="mistral"), sglang=dict(reasoning="mistral")),
+    "mistralai/Mistral-Medium-3.5-128B": dict(vllm=dict(reasoning="mistral"), sglang=dict(reasoning="mistral")),
+    "mistralai/Mistral-Small-4-119B-2603": dict(vllm=dict(reasoning="mistral", args=[]), sglang=dict(reasoning="mistral")),
+    "mistralai/Mistral-Large-4-1T-A52B": dict(vllm=dict(reasoning="mistral"), sglang=dict(tool="auto", reasoning="auto")),
+    "MiniMaxAI/MiniMax-M2.5": dict(vllm=dict(tool="minimax_m2", reasoning="minimax_m2", args=["--trust-remote-code"]), sglang=dict(tool="minimax-m2", reasoning="minimax")),
+    "MiniMaxAI/MiniMax-M2.7": dict(vllm=dict(tool="minimax_m2", reasoning="minimax_m2", args=["--trust-remote-code"]), sglang=dict(tool="minimax-m2", reasoning="minimax")),
+    "MiniMaxAI/MiniMax-M3": dict(sglang=dict(tool="auto", reasoning="auto")),
+    "XiaomiMiMo/MiMo-V2-Flash": dict(vllm=dict(reasoning="qwen3")),
+    "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16": dict(vllm=dict(reasoning="nano_v3", reasoning_plugin="nano_v3_reasoning_parser.py")),
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": dict(vllm=dict(reasoning="nano_v3", reasoning_plugin="nano_v3_reasoning_parser.py")),
+    "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-BF16": dict(vllm=dict(tool="gemma4", reasoning="gemma4"), sglang=dict(tool="gemma4", reasoning="gemma4")),
+    "LiquidAI/LFM3-1.7B": dict(sglang=dict(tool="auto", reasoning="auto"),
+        issues=["No vLLM recipe for LFM3 yet; vLLM lists Lfm3ForCausalLM as supported. Tool parser lfm2 is assumed from the family."]),
+    "tencent/Hy3": dict(),
+}

@@ -1,0 +1,55 @@
+{
+  "name": "spunup",
+  "version": "0.1.0",
+  "description": "One command to run AI models on your computer, Vast.ai or RunPod, with a private OpenAI-compatible endpoint.",
+  "type": "module",
+  "bin": {
+    "spunup": "dist/cli.js",
+    "spunup-ai": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "!dist/test",
+    "recipes",
+    "install",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/cli.js',0o755)\"",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "node --import ./dist/test/setup.js --test dist/test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "ink": "^8.0.0",
+    "react": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jthweny/spunup.git"
+  },
+  "keywords": [
+    "llm",
+    "vllm",
+    "llama.cpp",
+    "sglang",
+    "mlx",
+    "vast.ai",
+    "runpod",
+    "openai",
+    "local-ai"
+  ],
+  "homepage": "https://github.com/jthweny/spunup#readme",
+  "bugs": {
+    "url": "https://github.com/jthweny/spunup/issues"
+  }
+}

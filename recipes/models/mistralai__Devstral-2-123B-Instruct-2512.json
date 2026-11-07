@@ -1,0 +1,288 @@
+{
+ "schema": 1,
+ "id": "mistralai/Devstral-2-123B-Instruct-2512",
+ "name": "Devstral-2-123B-Instruct-2512",
+ "family": "mistral",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "Ministral3ForCausalLM",
+ "model_type": "ministral3",
+ "moe": false,
+ "params_b": 125.0,
+ "active_b": 125.0,
+ "layers": 88,
+ "experts": null,
+ "max_context": 262144,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "other",
+ "multimodal": false,
+ "kv": {
+  "mb_per_1k": 369.1,
+  "fixed_mb": 0.0,
+  "dtype": "16-bit",
+  "method": "2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "fp8:mistralai/Devstral-2-123B-Instruct-2512",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "mistralai/Devstral-2-123B-Instruct-2512",
+   "size_gb": 128.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "gguf:Q8_0",
+   "label": "Q8",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Q8_0/Devstral-2-123B-Instruct-2512-Q8_0-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 132.85,
+   "bits": 8.5,
+   "quant": "Q8_0",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q6_K",
+   "label": "Q6",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Q6_K/Devstral-2-123B-Instruct-2512-Q6_K-00001-of-00003.gguf",
+   "parts": 3,
+   "size_gb": 102.58,
+   "bits": 6.57,
+   "quant": "Q6_K",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q5_K_M",
+   "label": "Q5",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Q5_K_M/Devstral-2-123B-Instruct-2512-Q5_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 88.32,
+   "bits": 5.65,
+   "quant": "Q5_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q4_K_M",
+   "label": "Q4",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Q4_K_M/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 74.9,
+   "bits": 4.79,
+   "quant": "Q4_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:Q3_K_M",
+   "label": "Q3",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Q3_K_M/Devstral-2-123B-Instruct-2512-Q3_K_M-00001-of-00002.gguf",
+   "parts": 2,
+   "size_gb": 60.62,
+   "bits": 3.88,
+   "quant": "Q3_K_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-Q2_K_XL",
+   "label": "Q2",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Devstral-2-123B-Instruct-2512-UD-Q2_K_XL.gguf",
+   "parts": 1,
+   "size_gb": 47.94,
+   "bits": 3.07,
+   "quant": "UD-Q2_K_XL",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "gguf:UD-IQ1_M",
+   "label": "Q1",
+   "format": "gguf",
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "file": "Devstral-2-123B-Instruct-2512-UD-IQ1_M.gguf",
+   "parts": 1,
+   "size_gb": 30.57,
+   "bits": 1.96,
+   "quant": "UD-IQ1_M",
+   "runtimes": [
+    "llamacpp"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Devstral-2-123B-Instruct-2512-4bit",
+   "label": "MLX 4-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Devstral-2-123B-Instruct-2512-4bit",
+   "size_gb": 70.3,
+   "runtimes": [
+    "mlx"
+   ]
+  },
+  {
+   "id": "mlx:mlx-community/Devstral-2-123B-Instruct-2512-8bit",
+   "label": "MLX 8-bit",
+   "format": "mlx",
+   "repo": "mlx-community/Devstral-2-123B-Instruct-2512-8bit",
+   "size_gb": 132.8,
+   "runtimes": [
+    "mlx"
+   ]
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": false,
+   "min_version": null,
+   "nightly": false,
+   "image": null,
+   "args": [
+    "--tokenizer_mode",
+    "mistral",
+    "--config_format",
+    "mistral",
+    "--load_format",
+    "mistral"
+   ],
+   "env": {},
+   "tool_parser": "mistral",
+   "reasoning_parser": null,
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "mistral",
+   "reasoning_parser": null,
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": true,
+   "repo": "unsloth/Devstral-2-123B-Instruct-2512-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "llama",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": true,
+   "repos": [
+    "mlx-community/Devstral-2-123B-Instruct-2512-4bit",
+    "mlx-community/Devstral-2-123B-Instruct-2512-8bit",
+    "mlx-community/Devstral-2-123B-Instruct-2512-5bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": true,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "llamacpp"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --tool-call-parser mistral"
+  },
+  "cpu": {
+   "best": "llamacpp",
+   "others": [],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mixed": {
+   "best": "llamacpp",
+   "others": [],
+   "note": "Dense: whole layers split between GPU and RAM (-ngl).",
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  },
+  "mac": {
+   "best": "llamacpp",
+   "others": [
+    "mlx"
+   ],
+   "command": "llama-server -m {gguf} --host 127.0.0.1 --port {port} --api-key {api_key} --alias {name} -c {ctx} --jinja --reasoning-format deepseek --cache-reuse 256 -np 1 --fit on {gpu_layers}"
+  }
+ },
+ "known_issues": [
+  "Reasoning models (Magistral, *-Reasoning, Medium 3.5, Small 4, Large 4) add --reasoning-parser mistral."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/cookbook/autoregressive/Mistral",
+  "https://github.com/vllm-project/recipes/tree/main/models/mistralai",
+  "https://github.com/vllm-project/vllm/blob/main/docs/features/tool_calling.md#mistral-models-mistral",
+  "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512",
+  "https://huggingface.co/unsloth/Devstral-2-123B-Instruct-2512-GGUF"
+ ]
+}

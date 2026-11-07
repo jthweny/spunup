@@ -1,0 +1,202 @@
+{
+ "schema": 1,
+ "id": "thinkingmachines/Inkling",
+ "name": "Inkling",
+ "family": "inkling",
+ "popular": true,
+ "checked": "2026-11-06",
+ "architecture": "InklingForConditionalGeneration",
+ "model_type": "inkling_mm_model",
+ "moe": true,
+ "params_b": 975.0,
+ "active_b": 41.0,
+ "layers": 66,
+ "experts": 256,
+ "max_context": 1048576,
+ "max_context_extended": null,
+ "gated": false,
+ "license": "apache-2.0",
+ "multimodal": true,
+ "kv": {
+  "mb_per_1k": 46.14,
+  "fixed_mb": 230.7,
+  "dtype": "16-bit",
+  "method": "local_layer_ids; 2 x kv_heads x head_dim",
+  "estimate": true
+ },
+ "quants": [
+  {
+   "id": "nvfp4:thinkingmachines/Inkling",
+   "label": "NVFP4",
+   "format": "safetensors",
+   "repo": "thinkingmachines/Inkling",
+   "size_gb": 1904.8,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kernel-config.enable_flashinfer_autotune=False"
+   ],
+   "gated": null
+  },
+  {
+   "id": "mxfp4:lightseekorg/Inkling-MXFP4",
+   "label": "MXFP4",
+   "format": "safetensors",
+   "repo": "lightseekorg/Inkling-MXFP4",
+   "size_gb": 566.2,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [],
+   "gated": null
+  },
+  {
+   "id": "fp8:RedHatAI/Inkling-FP8-dynamic",
+   "label": "FP8",
+   "format": "safetensors",
+   "repo": "RedHatAI/Inkling-FP8-dynamic",
+   "size_gb": 987.7,
+   "runtimes": [
+    "vllm",
+    "sglang"
+   ],
+   "extra_args": [
+    "--kv-cache-dtype",
+    "fp8"
+   ],
+   "gated": null
+  }
+ ],
+ "runtimes": {
+  "vllm": {
+   "supported": true,
+   "min_version": "0.26.0",
+   "nightly": true,
+   "image": null,
+   "args": [
+    "--trust-remote-code",
+    "--tokenizer-mode",
+    "inkling"
+   ],
+   "env": {
+    "VLLM_USE_V2_MODEL_RUNNER": "1"
+   },
+   "tool_parser": "inkling",
+   "reasoning_parser": "inkling",
+   "reasoning_plugin": null,
+   "chat_template": null,
+   "hardware": {},
+   "deps": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-modules",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Prefix caching is on by default (vllm/config/cache.py: enable_prefix_caching=True).",
+   "long_context": null
+  },
+  "sglang": {
+   "supported": true,
+   "tool_parser": "inkling",
+   "reasoning_parser": "inkling",
+   "args": [
+    "--trust-remote-code"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--enable-lora",
+     "--lora-paths",
+     "{lora_name}={lora_path}",
+     "--max-lora-rank",
+     "{lora_rank}"
+    ]
+   },
+   "caching": "Radix (prefix) cache is on by default."
+  },
+  "llamacpp": {
+   "supported": false,
+   "repo": "unsloth/inkling-GGUF",
+   "min_build": "b12110",
+   "gguf_arch": "inkling",
+   "args": [
+    "--jinja",
+    "--reasoning-format",
+    "deepseek"
+   ],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--lora",
+     "{lora_path}"
+    ],
+    "note": "Adapter must be in GGUF format (convert with llama.cpp's convert_lora_to_gguf.py)."
+   },
+   "caching": "--cache-prompt is on by default; spunup adds --cache-reuse 256 so shifted prompts reuse the cache."
+  },
+  "mlx": {
+   "supported": false,
+   "repos": [
+    "mlx-community/Inkling-mlx-4bit",
+    "mlx-community/Inkling-mlx-2bit"
+   ],
+   "args": [],
+   "lora": {
+    "supported": false,
+    "args": [
+     "--adapter-path",
+     "{lora_path}"
+    ]
+   },
+   "caching": "Prompt cache is built in (mlx_lm.server --prompt-cache-size).",
+   "note": "mlx_lm.server has no API key option; spunup puts its small key-checking proxy in front."
+  }
+ },
+ "setups": {
+  "gpu": {
+   "best": "sglang",
+   "others": [
+    "vllm"
+   ],
+   "command": "python3 -m sglang.launch_server --model-path {model} --host 127.0.0.1 --port {port} --api-key {api_key} --served-model-name {name} --context-length {ctx} --tp-size {gpus} --trust-remote-code --tool-call-parser inkling --reasoning-parser inkling"
+  },
+  "cpu": {
+   "best": null,
+   "others": [],
+   "command": null
+  },
+  "mixed": {
+   "best": null,
+   "others": [],
+   "note": "MoE: expert layers go to RAM first (--n-cpu-moe).",
+   "command": null
+  },
+  "mac": {
+   "best": null,
+   "others": [],
+   "command": null
+  }
+ },
+ "known_issues": [
+  "vLLM support needs a nightly build and VLLM_USE_V2_MODEL_RUNNER=1.",
+  "vLLM support needs a nightly build (recipe min version: 0.26.0).",
+  "GGUF files exist (unsloth/inkling-GGUF) but use architecture \"inkling\", which mainline llama.cpp (171 architectures, checked 2026-11-06) does not support yet.",
+  "No GGUF build from a trusted publisher yet, so CPU, mixed GPU+RAM and Mac setups are not available."
+ ],
+ "benchmarks": [],
+ "sources": [
+  "https://github.com/sgl-project/sglang/tree/main/docs/src/snippets/configs/thinkingmachines/inkling.jsx",
+  "https://github.com/vllm-project/recipes/blob/main/models/thinkingmachines/Inkling.yaml",
+  "https://github.com/vllm-project/recipes/tree/main/models/thinkingmachines",
+  "https://huggingface.co/thinkingmachines/Inkling",
+  "params: vLLM recipe Inkling-NVFP4: 975B / 41B"
+ ]
+}
