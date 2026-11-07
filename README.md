@@ -52,7 +52,7 @@ story time. you want to run a model yourself.
 > still not sure it's right
 ```
 
-never again 🫡
+never again 🤯
 
 **spunup is the most laid-back way to run a model, ever.** it finds the hardware, picks the runtime, sets every flag, sizes the context, and hands you back a private, OpenAI-compatible endpoint + API key.
 
